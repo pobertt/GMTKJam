@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4oy3gjuok4k8"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_0qa20"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omppl"]
+
+[sub_resource type="Animation" id="Animation_8yo1l"]
+resource_name = "crouch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam_controller:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hpn2q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam_controller:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ej5q6"]
+_data = {
+"RESET": SubResource("Animation_hpn2q"),
+"crouch": SubResource("Animation_8yo1l")
+}
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_0qa20")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_omppl")
+
+[node name="cam_controller" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="camera" type="Camera3D" parent="cam_controller"]
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ej5q6")
+}

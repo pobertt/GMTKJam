@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4oy3gjuok4k8"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_0qa20"]
+[ext_resource type="Texture2D" uid="uid://cw4f4170okgx8" path="res://icon.svg" id="2_u6fqc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1mhij"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omppl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4jis"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_0qa20")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_1mhij")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_omppl")
+
+[node name="cam_controller" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="camera" type="Camera3D" parent="cam_controller"]
+current = true
+
+[node name="Sprite3D" type="Sprite3D" parent="cam_controller/camera"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -2)
+material_override = SubResource("StandardMaterial3D_k4jis")
+no_depth_test = true
+texture = ExtResource("2_u6fqc")
