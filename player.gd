@@ -35,6 +35,7 @@ var current_state := AIR
 const WALL_FRICTION = 0
 
 var small_active : bool = false
+@onready var small_timer: Timer = $small_powerup
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
@@ -122,18 +123,32 @@ func _check_jump():
 		jump_count += 1
 		
 func _check_slide():
-	if Input.is_action_just_pressed("slide"):
-		anim.play("slide")
-	if Input.is_action_pressed("slide"):
-		if speed > 4 and is_on_floor():
-			sliding = true
-			speed = SLIDE_SPEED
-			JUMP_VELOCITY * 1.5
-	if Input.is_action_just_released("slide"):
-		if sliding == true:
-			anim.play_backwards("slide")
-			speed = WALK_SPEED
-			JUMP_VELOCITY * 1
+	if small_active == true:	
+		if Input.is_action_just_pressed("slide"):
+			anim.play("small_slide")
+		if Input.is_action_pressed("slide"):
+			if speed > 4 and is_on_floor():
+				sliding = true
+				speed = SLIDE_SPEED
+				JUMP_VELOCITY * 1.5
+		if Input.is_action_just_released("slide"):
+			if sliding == true:
+				anim.play_backwards("small_slide")
+				speed = WALK_SPEED
+				JUMP_VELOCITY * 1
+	else:
+		if Input.is_action_just_pressed("slide"):
+			anim.play("slide")
+		if Input.is_action_pressed("slide"):
+			if speed > 4 and is_on_floor():
+				sliding = true
+				speed = SLIDE_SPEED
+				JUMP_VELOCITY * 1.5
+		if Input.is_action_just_released("slide"):
+			if sliding == true:
+				anim.play_backwards("slide")
+				speed = WALK_SPEED
+				JUMP_VELOCITY * 1
 			
 func _check_sprint():
 	if Input.is_action_pressed("sprint") and crouching == false:
@@ -154,7 +169,13 @@ func _gain_jumps(qty):
 func _small_powerup():
 	anim.play("small_powerup")
 	small_active = true
+	small_timer.start()
+	#hud stuff below
 
+func _on_small_powerup_timeout() -> void:
+	anim.play_backwards("small_powerup")
+	small_active = false
+	small_timer.stop()
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
