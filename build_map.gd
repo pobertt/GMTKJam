@@ -1,17 +1,33 @@
 extends Node2D
 
-var tile;
+
+@onready var tilemap = get_node("Map")
+var Sprites = []
+var BuildingCoords_Dict = {}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for x in $Node2D.get_children():
+		Sprites.append(x)
 
-
+	#pass # Replace with function body.
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	tile = $TileMapLayer.local_to_map(get_global_mouse_position());
-	$TileMapLayer.set_cell(tile, 0, Vector2i(0, 0), 0);
+func _process(_delta):
+	pass
+
+func _GenerateMap():
+	BuildingCoords_Dict.clear()
+	for x in Sprites:
+		BuildingCoords_Dict.get_or_add(x.mouse_tile, x._name)
+	print(BuildingCoords_Dict)
 	
-		
+func _GetBuildingCoords():
+	return BuildingCoords_Dict
 	
-	#pass
+# DEBUG -- GenerateMap Function
+func _input(event):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
+		_GenerateMap()

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://e3t55uyhpsd4"]
+
+[ext_resource type="MeshLibrary" uid="uid://cjqiqe271ya2r" path="res://Blocks/TestMeshLibrary.tres" id="1_gd6yd"]
+
+[node name="GeneratedLevel" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258013, 0)
+mesh_library = ExtResource("1_gd6yd")
