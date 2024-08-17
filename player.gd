@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
 var speed
-const WALK_SPEED = 4.0
-const SPRINT_SPEED = 8.0
-const SLIDE_SPEED = 15
-var JUMP_VELOCITY = 4.5
+const WALK_SPEED = 8
+const SPRINT_SPEED = 16
+const SLIDE_SPEED = 25
+const JUMP_VELOCITY = 20
+const WALL_JUMP_VEL = 12
 const SENSITIVITY = 0.007
 
 # Bob variables.
@@ -25,6 +26,12 @@ var sliding : bool = false
 
 var gravity_vec = Vector3( )
 
+const FLOOR = 0
+const WALL = 1
+const AIR = 2
+var current_state := AIR
+const WALL_FRICTION = 0
+
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -43,18 +50,12 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _physics_process(delta):
-	
 	print(speed)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		jump_count = 0
-		
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and jump_count < jumps:
-		velocity.y = JUMP_VELOCITY
-		jump_count += 1
 		
 	# Handle Sprint.
 	if Input.is_action_pressed("sprint") and crouching == false:
@@ -66,17 +67,16 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("slide"):
 		anim.play("slide")
-
-		sliding = true
-	if Input.is_action_pressed("slide") and is_on_floor():
-		speed = SLIDE_SPEED
-		JUMP_VELOCITY = 9
+	if Input.is_action_pressed("slide"):
+		if speed > 4 and is_on_floor():
+			sliding = true
+			speed = SLIDE_SPEED
+			JUMP_VELOCITY * 1.5
 	if Input.is_action_just_released("slide"):
-		anim.play_backwards("slide")
-
-		speed = WALK_SPEED
-		JUMP_VELOCITY = 4.5
-	
+		if sliding == true:
+			anim.play_backwards("slide")
+			speed = WALK_SPEED
+			JUMP_VELOCITY * 1
 		
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -100,11 +100,39 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	if sliding == true:
+		velocity_clamped = clamp(velocity.length(), 0.5, SLIDE_SPEED * 2)
+		target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
+		camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
+	_check_jump()	
 	move_and_slide()
+	_update_state()
+	
+	if current_state == WALL:
+		velocity.y *= WALL_FRICTION
+	
+func _update_state():
+	if is_on_wall_only():
+		current_state = WALL
+	elif is_on_floor():
+		current_state = FLOOR
+	else:
+		current_state = AIR
 	
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+	
+func _check_jump():
+	if Input.is_action_just_pressed("jump"):
+		if current_state == FLOOR:
+			velocity.y = JUMP_VELOCITY
+		elif current_state == WALL:
+			velocity = get_wall_normal() * WALL_JUMP_VEL#((camera.global_basis * Vector3.FORWARD) * WALL_JUMP_VEL)
+			velocity.y += JUMP_VELOCITY 
+		jump_count += 1
+		
+#get normal if holding forward, 
