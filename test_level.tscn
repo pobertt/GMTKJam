@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://day7l83sv3sab"]
+[gd_scene load_steps=9 format=3 uid="uid://day7l83sv3sab"]
 
 [ext_resource type="PackedScene" uid="uid://b4oy3gjuok4k8" path="res://player.tscn" id="1_prio6"]
+[ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://powerup.tscn" id="2_ntqnr"]
 
 [sub_resource type="Environment" id="Environment_36fah"]
 
@@ -81,3 +82,12 @@ mesh = SubResource("BoxMesh_f8gw7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_frwif")
+
+[node name="powerup" parent="." instance=ExtResource("2_ntqnr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19695, -0.212641, -8.65879)
+qty = 1
+
+[node name="powerup2" parent="." instance=ExtResource("2_ntqnr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.29323, 0.101123, -7.19612)
+type = 1
+qty = 1

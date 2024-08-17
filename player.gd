@@ -4,7 +4,7 @@ var speed
 const WALK_SPEED = 8
 const SPRINT_SPEED = 16
 const SLIDE_SPEED = 25
-const JUMP_VELOCITY = 20
+const JUMP_VELOCITY = 15
 const WALL_JUMP_VEL = 12
 const SENSITIVITY = 0.007
 
@@ -19,6 +19,8 @@ const FOV_CHANGE = 1.5
 
 var jump_count : int = 0
 @export var jumps : int = 1
+var dash_count : int = 0
+@export var dashs : int = 0
 
 var crouching : bool = false
 var sprinting : bool = false
@@ -135,4 +137,10 @@ func _check_jump():
 			velocity.y += JUMP_VELOCITY 
 		jump_count += 1
 		
-#get normal if holding forward, 
+func _gain_dash(qty):
+	dashs += qty
+	#hud stuff below
+
+func _gain_jumps(qty):
+	jumps += qty
+	#hud stuff below
