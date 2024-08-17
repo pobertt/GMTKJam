@@ -34,6 +34,8 @@ const AIR = 2
 var current_state := AIR
 const WALL_FRICTION = 0
 
+var small_active : bool = false
+
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -52,34 +54,14 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _physics_process(delta):
-	print(speed)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		jump_count = 0
-		
-	# Handle Sprint.
-	if Input.is_action_pressed("sprint") and crouching == false:
-		speed = SPRINT_SPEED
-		sprinting = true
-	else:
-		speed = WALK_SPEED
-		sprinting = false
-		
-	if Input.is_action_just_pressed("slide"):
-		anim.play("slide")
-	if Input.is_action_pressed("slide"):
-		if speed > 4 and is_on_floor():
-			sliding = true
-			speed = SLIDE_SPEED
-			JUMP_VELOCITY * 1.5
-	if Input.is_action_just_released("slide"):
-		if sliding == true:
-			anim.play_backwards("slide")
-			speed = WALK_SPEED
-			JUMP_VELOCITY * 1
-		
+				
+	_check_sprint()
+				
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -108,6 +90,8 @@ func _physics_process(delta):
 		camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
 	_check_jump()	
+	_check_slide()
+
 	move_and_slide()
 	_update_state()
 	
@@ -137,6 +121,28 @@ func _check_jump():
 			velocity.y += JUMP_VELOCITY 
 		jump_count += 1
 		
+func _check_slide():
+	if Input.is_action_just_pressed("slide"):
+		anim.play("slide")
+	if Input.is_action_pressed("slide"):
+		if speed > 4 and is_on_floor():
+			sliding = true
+			speed = SLIDE_SPEED
+			JUMP_VELOCITY * 1.5
+	if Input.is_action_just_released("slide"):
+		if sliding == true:
+			anim.play_backwards("slide")
+			speed = WALK_SPEED
+			JUMP_VELOCITY * 1
+			
+func _check_sprint():
+	if Input.is_action_pressed("sprint") and crouching == false:
+		speed = SPRINT_SPEED
+		sprinting = true
+	else:
+		speed = WALK_SPEED
+		sprinting = false
+		
 func _gain_dash(qty):
 	dashs += qty
 	#hud stuff below
@@ -144,3 +150,12 @@ func _gain_dash(qty):
 func _gain_jumps(qty):
 	jumps += qty
 	#hud stuff below
+	
+func _small_powerup():
+	anim.play("small_powerup")
+	small_active = true
+
+
+func _input(event):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
+		print("Enter Key")

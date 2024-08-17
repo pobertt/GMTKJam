@@ -2,7 +2,8 @@ extends Area3D
 
 enum Type {
 	dash,
-	double_jump
+	double_jump,
+	small_powerup
 }
 
 @export var type := Type.dash
@@ -24,6 +25,9 @@ func _ready() -> void:
 	elif type == Type.double_jump:
 		label.text = "Double Jump"
 		mat.set_albedo(Color(1,0,0,1))
+	elif type == Type.small_powerup:
+		label.text = "Small Man syndrome"
+		mat.set_albedo(Color(1,1,0,1))
 		
 	mesh.set_surface_override_material(0,mat)
 
@@ -38,6 +42,8 @@ func _on_body_entered(body: Node3D) -> void:
 		body._gain_dash(qty)
 	elif type == Type.double_jump:
 		body._gain_jumps(qty)
+	elif type == Type.small_powerup:
+		body._small_powerup()
 	mesh.visible = false
 	respawn_timer.start()
 

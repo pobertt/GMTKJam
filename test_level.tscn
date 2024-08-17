@@ -91,3 +91,7 @@ qty = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.29323, 0.101123, -7.19612)
 type = 1
 qty = 1
+
+[node name="powerup3" parent="." instance=ExtResource("2_ntqnr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0827, -0.567271, -10.7339)
+type = 2
