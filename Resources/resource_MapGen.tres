@@ -5,3 +5,5 @@
 [resource]
 script = ExtResource("1_w01t7")
 buildingcoords = {}
+PlayerStart = Vector2i(20, 10)
+PlayerEnd = Vector2i(33, 10)
