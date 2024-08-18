@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://e3t55uyhpsd4"]
 
 [ext_resource type="Script" path="res://GeneratedLevel/generated_level.gd" id="1_3vjih"]
-[ext_resource type="MeshLibrary" uid="uid://cjqiqe271ya2r" path="res://Blocks/TestMeshLibrary.tres" id="1_gd6yd"]
 [ext_resource type="Resource" uid="uid://cjo7fbvdn1pkc" path="res://Resources/resource_MapGen.tres" id="2_pvpcr"]
+[ext_resource type="MeshLibrary" uid="uid://5kgyadmndjck" path="res://new_mesh_lib.tres" id="3_th3vm"]
 [ext_resource type="PackedScene" uid="uid://b4oy3gjuok4k8" path="res://player.tscn" id="4_tasun"]
 
 [node name="GeneratedLevel" type="Node3D"]
@@ -11,7 +11,7 @@ MapGenResource = ExtResource("2_pvpcr")
 
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258013, 0)
-mesh_library = ExtResource("1_gd6yd")
+mesh_library = ExtResource("3_th3vm")
 cell_size = Vector3(6, 6, 6)
 
 [node name="player" parent="." instance=ExtResource("4_tasun")]
