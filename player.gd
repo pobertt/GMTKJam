@@ -47,6 +47,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $cam_controller
 @onready var camera = $cam_controller/camera
+@onready var cam_marker: Marker3D = $cam_controller/marker
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -55,7 +56,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))		
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))		
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -195,10 +196,10 @@ func _input(event):
 		if(dash_active):
 			var aim = camera.get_global_transform().basis
 			var dash_direction = Vector3()
-			dash_direction += aim.z * -_get_direction().z # needs to VINPUT (ranges from 1 to -1)
-			dash_direction += aim.x * -_get_direction().x  # needs to HINPUT (ranges from 1 to -1)
+			dash_direction += aim.z * (cam_marker.global_position.z * -(1/ cam_marker.global_position.z))
 			dash_direction = dash_direction.normalized()
 			var dash_vector = dash_direction * DASH_SPEED
+			print(dash_direction)
 			velocity += dash_vector
 			print("dash used")
 			dash_active = false
