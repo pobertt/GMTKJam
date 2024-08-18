@@ -9,6 +9,7 @@ points = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.
 
 [node name="powerup" type="Area3D"]
 script = ExtResource("1_3ysj5")
+active = true
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PrismMesh_x76g6")

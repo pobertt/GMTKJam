@@ -85,12 +85,10 @@ shape = SubResource("ConcavePolygonShape3D_frwif")
 
 [node name="powerup" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19695, -0.212641, -8.65879)
-qty = 1
 
 [node name="powerup2" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.29323, 0.101123, -7.19612)
 type = 1
-qty = 1
 
 [node name="powerup3" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0827, -0.567271, -10.7339)

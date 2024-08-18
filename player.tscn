@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://player.gd" id="1_0qa20"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omppl"]
+height = 4.0
 
 [sub_resource type="Animation" id="Animation_obwpt"]
 length = 0.001
@@ -47,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -0.5, 0), Vector3(0, -1.5, -1)]
+"values": [Vector3(0, 0.5, 0), Vector3(0, -1.5, -1)]
 }
 
 [sub_resource type="Animation" id="Animation_y3xr7"]
@@ -63,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -1.5, -1), Vector3(0, -2.5, -1)]
+"values": [Vector3(0, -0.5, -1), Vector3(0, -2, -1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0p713"]
@@ -79,7 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82934, 0)
 script = ExtResource("1_0qa20")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("CapsuleShape3D_omppl")
 
 [node name="cam_controller" type="Node3D" parent="."]
@@ -94,6 +94,6 @@ libraries = {
 }
 
 [node name="small_powerup" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 20.0
 
 [connection signal="timeout" from="small_powerup" to="." method="_on_small_powerup_timeout"]

@@ -8,7 +8,7 @@ enum Type {
 
 @export var type := Type.dash
 
-@export var qty:int
+@export var active:bool
 
 @onready var mesh: MeshInstance3D = $mesh
 @onready var label: Label3D = $mesh/label
@@ -31,7 +31,6 @@ func _ready() -> void:
 		
 	mesh.set_surface_override_material(0,mat)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	mesh.rotation.y += 1 * delta
@@ -39,11 +38,11 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if type == Type.dash:
-		body._gain_dash(qty)
+		body._gain_dash(active)
 	elif type == Type.double_jump:
-		body._gain_jumps(qty)
+		body._gain_jumps(active)
 	elif type == Type.small_powerup:
-		body._small_powerup()
+		body._small_powerup(active)
 	mesh.visible = false
 	respawn_timer.start()
 
