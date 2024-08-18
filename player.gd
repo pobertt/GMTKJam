@@ -36,6 +36,7 @@ const WALL = 1
 const AIR = 2
 var current_state := AIR
 const WALL_FRICTION = 0
+const testvar = 0
 
 var small_active : bool = false
 @onready var small_timer: Timer = $small_powerup
