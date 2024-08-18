@@ -16,3 +16,4 @@ cell_size = Vector3(6, 6, 6)
 
 [node name="player" parent="." instance=ExtResource("4_tasun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.989, 15.4284, 104.532)
+axis_lock_linear_y = true
