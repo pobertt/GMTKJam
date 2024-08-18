@@ -2,6 +2,7 @@ extends Node3D
 
 @export var player_scene : PackedScene 
 @onready var player: CharacterBody3D = $player
+var testvar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
