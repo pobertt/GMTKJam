@@ -100,6 +100,7 @@ func _physics_process(delta):
 		target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 		camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
+	_check_dash()
 	_check_jump()
 	
 	if small_active == true:	
@@ -203,8 +204,8 @@ func _on_small_powerup_timeout() -> void:
 	small_active = false
 	small_timer.stop()
 
-func _input(event):
-	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
+func _check_dash():
+	if Input.is_action_just_pressed("dash"):
 		if(dash_active):
 			$player_audios/dash.play()
 			var aim = camera.get_global_transform().basis

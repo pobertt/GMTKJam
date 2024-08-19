@@ -220,10 +220,11 @@ stream = ExtResource("2_q2peh")
 
 [node name="dash" type="AudioStreamPlayer3D" parent="player_audios"]
 stream = ExtResource("3_xkqg0")
-volume_db = -30.0
+volume_db = -40.0
+pitch_scale = 0.9
 
 [node name="jump" type="AudioStreamPlayer3D" parent="player_audios"]
 stream = ExtResource("4_1w5m8")
-volume_db = -20.0
+volume_db = -30.0
 
 [connection signal="timeout" from="small_powerup" to="." method="_on_small_powerup_timeout"]
