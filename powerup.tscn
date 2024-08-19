@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ygpobru5c8pn"]
+[gd_scene load_steps=6 format=3 uid="uid://ygpobru5c8pn"]
 
 [ext_resource type="Script" path="res://powerup.gd" id="1_3ysj5"]
+[ext_resource type="AudioStream" uid="uid://bf4jbyf68uvt7" path="res://SFX/powerup pickup.wav" id="2_o2lh1"]
+[ext_resource type="AudioStream" uid="uid://dd28lb65htpkg" path="res://SFX/get small.wav" id="3_vanyj"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_x76g6"]
 
@@ -23,6 +25,16 @@ shape = SubResource("ConvexPolygonShape3D_no7bm")
 
 [node name="respawn" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="powerup_pickup" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_o2lh1")
+volume_db = -40.0
+pitch_scale = 0.9
+
+[node name="small_powerup_pickup" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_vanyj")
+volume_db = -40.0
+pitch_scale = 0.9
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="respawn" to="." method="_on_respawn_timeout"]

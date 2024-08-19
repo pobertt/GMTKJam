@@ -39,10 +39,13 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if type == Type.dash:
 		body._gain_dash(active)
+		$powerup_pickup.play()
 	elif type == Type.double_jump:
 		body._gain_jumps(active)
+		$powerup_pickup.play()
 	elif type == Type.small_powerup:
 		body._small_powerup(active)
+		$small_powerup_pickup.play()
 	mesh.visible = false
 	respawn_timer.start()
 
