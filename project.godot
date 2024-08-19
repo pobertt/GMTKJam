@@ -83,4 +83,6 @@ pause={
 
 [physics]
 
+common/physics_ticks_per_second=128
+common/max_physics_steps_per_frame=16
 3d/default_gravity=25.0
