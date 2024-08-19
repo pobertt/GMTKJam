@@ -50,7 +50,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $cam_controller/camera
 @onready var cam_marker: Marker3D = $cam_controller/marker
 @onready var footstep_audio: AudioStreamPlayer3D = $player_audios/footstep
-@onready var pause_menu: Control = $player_ui/pause_menu
+@onready var pause_menu: Control = $SubViewportContainer/SubViewport/Control_UI/pause_menu
 @onready var small_timer: Timer = $small_powerup
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
@@ -64,7 +64,7 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))		
 
 func _physics_process(delta):
-	print(velocity)
+	#print(velocity)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -226,13 +226,13 @@ func _play_footstep_audio():
 
 func _pause_menu():
 	if get_tree().paused == false:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		get_tree().paused = false
-		pause_menu.hide()
-	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		pause_menu.show()
 		get_tree().paused = true
+		pause_menu.show()
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		pause_menu.hide()
+		get_tree().paused = false
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
