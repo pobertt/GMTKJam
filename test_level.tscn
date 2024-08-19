@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://day7l83sv3sab"]
 
-[ext_resource type="PackedScene" uid="uid://b4oy3gjuok4k8" path="res://player.tscn" id="1_prio6"]
 [ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://powerup.tscn" id="2_ntqnr"]
+[ext_resource type="PackedScene" uid="uid://v54ijp0hxksf" path="res://start_block.tscn" id="3_85nwm"]
 
 [sub_resource type="Environment" id="Environment_36fah"]
 
@@ -19,9 +19,6 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="TestLevel" type="Node3D"]
 
-[node name="player" parent="." instance=ExtResource("1_prio6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094869, 1.51967, -0.492977)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.8474, 0.530955, 0, -0.530955, -0.8474, 0, 30.6754, -61.2635)
 
@@ -37,15 +34,6 @@ mesh = SubResource("BoxMesh_5yogh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="box1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gf6jj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -4.00896, -25.2067)
-mesh = SubResource("BoxMesh_f8gw7")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_frwif")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.53771, 0, 0, 0, 10, 0, 0, 0, 8.15193, -5.86105, 5.72057, 12.0018)
@@ -85,13 +73,14 @@ shape = SubResource("ConcavePolygonShape3D_frwif")
 
 [node name="powerup" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19695, -0.212641, -8.65879)
-qty = 1
 
 [node name="powerup2" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.29323, 0.101123, -7.19612)
 type = 1
-qty = 1
 
 [node name="powerup3" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0827, -0.567271, -10.7339)
 type = 2
+
+[node name="start_block" parent="." instance=ExtResource("3_85nwm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0221829, -4.76837e-07, -38.1309)

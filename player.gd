@@ -4,6 +4,7 @@ var speed
 const WALK_SPEED = 8
 const SPRINT_SPEED = 16
 const SLIDE_SPEED = 25
+const DASH_SPEED = 50
 const JUMP_VELOCITY = 15
 const WALL_JUMP_VEL = 12
 const SENSITIVITY = 0.007
@@ -22,6 +23,8 @@ var jump_count : int = 0
 var dash_count : int = 0
 @export var dashs : int = 0
 
+var double_jump_active : bool = false
+var dash_active : bool = false
 var crouching : bool = false
 var sprinting : bool = false
 var sliding : bool = false
@@ -33,6 +36,7 @@ const WALL = 1
 const AIR = 2
 var current_state := AIR
 const WALL_FRICTION = 0
+const testvar = 0
 
 var small_active : bool = false
 @onready var small_timer: Timer = $small_powerup
@@ -44,6 +48,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $cam_controller
 @onready var camera = $cam_controller/camera
+@onready var cam_marker: Marker3D = $cam_controller/marker
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -52,7 +57,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))		
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -60,22 +65,19 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	else:
 		jump_count = 0
-				
+		
 	_check_sprint()
-				
-	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if is_on_floor():
-		if direction:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+		if 	_get_direction():
+			velocity.x = _get_direction().x * speed
+			velocity.z = _get_direction().z * speed
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-			velocity.z = lerp(velocity.z, direction.x * speed, delta * 7.0)
+			velocity.x = lerp(velocity.x, 	_get_direction().x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, 	_get_direction().x * speed, delta * 7.0)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
+		velocity.x = lerp(velocity.x, 	_get_direction().x * speed, delta * 3.0)
+		velocity.z = lerp(velocity.z, 	_get_direction().z * speed, delta * 3.0)
 			
 	# Head Bob.
 	t_bob += delta * velocity.length() * float(is_on_floor())
@@ -90,14 +92,25 @@ func _physics_process(delta):
 		target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 		camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
-	_check_jump()	
-	_check_slide()
-
+	_check_jump()
+	
+	if small_active == true:	
+		_check_slide("small_slide")
+	else:
+		_check_slide("slide")
+		
 	move_and_slide()
 	_update_state()
 	
 	if current_state == WALL:
+		jump_count = 0
 		velocity.y *= WALL_FRICTION
+	
+func _get_direction() -> Vector3:
+	# Get the input direction and handle the movement/deceleration.
+	var input_dir = Input.get_vector("left", "right", "up", "down")
+	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	return direction
 	
 func _update_state():
 	if is_on_wall_only():
@@ -115,41 +128,37 @@ func _headbob(time) -> Vector3:
 	
 func _check_jump():
 	if Input.is_action_just_pressed("jump"):
-		if current_state == FLOOR:
-			velocity.y = JUMP_VELOCITY
-		elif current_state == WALL:
-			velocity = get_wall_normal() * WALL_JUMP_VEL#((camera.global_basis * Vector3.FORWARD) * WALL_JUMP_VEL)
-			velocity.y += JUMP_VELOCITY 
-		jump_count += 1
-		
-func _check_slide():
-	if small_active == true:	
-		if Input.is_action_just_pressed("slide"):
-			anim.play("small_slide")
-		if Input.is_action_pressed("slide"):
-			if speed > 4 and is_on_floor():
-				sliding = true
-				speed = SLIDE_SPEED
-				JUMP_VELOCITY * 1.5
-		if Input.is_action_just_released("slide"):
-			if sliding == true:
-				anim.play_backwards("small_slide")
-				speed = WALK_SPEED
-				JUMP_VELOCITY * 1
-	else:
-		if Input.is_action_just_pressed("slide"):
-			anim.play("slide")
-		if Input.is_action_pressed("slide"):
-			if speed > 4 and is_on_floor():
-				sliding = true
-				speed = SLIDE_SPEED
-				JUMP_VELOCITY * 1.5
-		if Input.is_action_just_released("slide"):
-			if sliding == true:
-				anim.play_backwards("slide")
-				speed = WALK_SPEED
-				JUMP_VELOCITY * 1
+		if double_jump_active == true:
+			jumps = 2
+		else:
+			jumps = 1
 			
+		if jump_count < jumps:
+			jump_count += 1
+			if current_state == FLOOR:
+				velocity.y = JUMP_VELOCITY
+			elif current_state == WALL:
+				velocity = get_wall_normal() * WALL_JUMP_VEL#((camera.global_basis * Vector3.FORWARD) * WALL_JUMP_VEL)
+				velocity.y += JUMP_VELOCITY 
+			elif current_state == AIR:
+				velocity.y = JUMP_VELOCITY
+				double_jump_active = false
+				print("double jump disabled")
+
+func _check_slide(slide_type):
+	if Input.is_action_just_pressed("slide"):
+		anim.play(slide_type)
+	if Input.is_action_pressed("slide"):
+		if speed > 4 and is_on_floor():
+			sliding = true
+			speed = SLIDE_SPEED
+			JUMP_VELOCITY * 1.5
+	if Input.is_action_just_released("slide"):
+		if sliding == true:
+			anim.play_backwards(slide_type)
+			speed = WALK_SPEED
+			JUMP_VELOCITY * 1
+
 func _check_sprint():
 	if Input.is_action_pressed("sprint") and crouching == false:
 		speed = SPRINT_SPEED
@@ -158,18 +167,24 @@ func _check_sprint():
 		speed = WALK_SPEED
 		sprinting = false
 		
-func _gain_dash(qty):
-	dashs += qty
+func _gain_dash(active):
+	if active == true:
+		print("dash active")
+		dash_active = active
 	#hud stuff below
 
-func _gain_jumps(qty):
-	jumps += qty
+func _gain_jumps(active):
+	if active == true:
+		print("double jump active")
+		double_jump_active = active
 	#hud stuff below
 	
-func _small_powerup():
-	anim.play("small_powerup")
-	small_active = true
-	small_timer.start()
+func _small_powerup(active):
+	if active == true:
+		print("small powerup active")
+		anim.play("small_powerup")
+		small_active = active
+		small_timer.start()
 	#hud stuff below
 
 func _on_small_powerup_timeout() -> void:
@@ -178,5 +193,14 @@ func _on_small_powerup_timeout() -> void:
 	small_timer.stop()
 
 func _input(event):
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
-		print("Enter Key")
+	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
+		if(dash_active):
+			var aim = camera.get_global_transform().basis
+			var dash_direction = Vector3()
+			dash_direction += aim.z * (cam_marker.global_position.z * -(1/ cam_marker.global_position.z))
+			dash_direction = dash_direction.normalized()
+			var dash_vector = dash_direction * DASH_SPEED
+			print(dash_direction)
+			velocity += dash_vector
+			print("dash used")
+			dash_active = false
