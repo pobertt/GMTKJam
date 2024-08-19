@@ -30,6 +30,8 @@ var sprinting : bool = false
 var sliding : bool = false
 var walking : bool = false
 
+var paused : bool = false
+
 var gravity_vec = Vector3( )
 
 const FLOOR = 0
@@ -40,9 +42,6 @@ const WALL_FRICTION = 0
 const testvar = 0
 
 var small_active : bool = false
-@onready var small_timer: Timer = $small_powerup
-
-@onready var anim: AnimationPlayer = $AnimationPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -51,6 +50,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $cam_controller/camera
 @onready var cam_marker: Marker3D = $cam_controller/marker
 @onready var footstep_audio: AudioStreamPlayer3D = $player_audios/footstep
+@onready var pause_menu: Control = $player_ui/pause_menu
+@onready var small_timer: Timer = $small_powerup
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -221,3 +223,17 @@ func _check_dash():
 func _play_footstep_audio():
 	footstep_audio.pitch_scale = randf_range(0.6, 0.8)
 	footstep_audio.play()
+
+func _pause_menu():
+	if get_tree().paused == false:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_tree().paused = false
+		pause_menu.hide()
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		pause_menu.show()
+		get_tree().paused = true
+
+func _input(event):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		_pause_menu()
