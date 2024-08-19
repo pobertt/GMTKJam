@@ -13,6 +13,7 @@ var block_list : Array[BlockBuildInfo]
 
 const generated_level_scene = preload("res://map_generation/main_scenes/GeneratedLevel.tscn")
 const block_button = preload("res://map_generation/ui/block_button.tscn")
+const block_sprite = preload("res://map_generation/2d_sprites/TestSpritetscn.tscn")
 
 
 func _ready() -> void:
@@ -29,6 +30,12 @@ func set_up_level() -> void:
 
 func activate_block_tool(type: BlockType):
 	print(type._name)
+	var new_block = block_sprite.instantiate() as BlockSprite
+	block_container.add_child(new_block)
+	new_block._set_sprite(type)
+	new_block._set_tile_map_ref(tile_map)
+	new_block.set_process(true)
+
 
 func generate_map():
 	block_list.clear()
@@ -46,6 +53,7 @@ func generate_map():
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
 		generate_map()
+
 
 
 # gets block resource at coordinate based on texture position on atlas texture
