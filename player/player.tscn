@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4oy3gjuok4k8"]
+[gd_scene load_steps=17 format=3 uid="uid://b4oy3gjuok4k8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_0qa20"]
 [ext_resource type="AudioStream" uid="uid://dyfrasw5cj2n0" path="res://SFX/individual step.wav" id="2_q2peh"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://25o2p76vqacd" path="res://SFX/jump.wav" id="4_1w5m8"]
 [ext_resource type="PackedScene" uid="uid://cojvgu3wuyscn" path="res://ui_scenes/pause_menu.tscn" id="5_y2ghk"]
 [ext_resource type="PackedScene" uid="uid://c3iic2i1qaa18" path="res://ui_scenes/powerup_pickup.tscn" id="6_0w14c"]
+[ext_resource type="PackedScene" uid="uid://jf2276nkej2x" path="res://ui_scenes/win_screen.tscn" id="6_2whh8"]
+[ext_resource type="PackedScene" uid="uid://c8hdd8y8huaew" path="res://ui_scenes/restart_screen.tscn" id="7_vbg3a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omppl"]
 height = 4.0
@@ -236,6 +238,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+
+[node name="win_screen" parent="." instance=ExtResource("6_2whh8")]
+visible = false
+
+[node name="restart_screen" parent="." instance=ExtResource("7_vbg3a")]
+visible = false
 
 [node name="powerup_pickup" parent="." instance=ExtResource("6_0w14c")]
 visible = false

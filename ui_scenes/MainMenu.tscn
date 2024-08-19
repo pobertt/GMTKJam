@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://7pcw7nja6pf2"]
+[gd_scene load_steps=4 format=3 uid="uid://7pcw7nja6pf2"]
 
 [ext_resource type="Script" path="res://ui_scenes/main_menu.gd" id="1_la8gf"]
+[ext_resource type="AudioStream" uid="uid://chefsnsyaoj2w" path="res://SFX/2d song new.wav" id="2_vei2r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_plwm7"]
 font_size = 64
@@ -52,6 +53,10 @@ grow_horizontal = 2
 rotation = 0.000908585
 text = "block jumper"
 label_settings = SubResource("LabelSettings_plwm7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vei2r")
+volume_db = -10.0
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

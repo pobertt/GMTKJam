@@ -62,7 +62,6 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))		
 
 func _physics_process(delta):
-	
 	#print(velocity)
 	# Add the gravity.
 	if not is_on_floor():
@@ -70,6 +69,8 @@ func _physics_process(delta):
 	else:
 		jump_count = 0
 		
+	if global_position.y < -20:
+		_restart()	
 	_check_sprint()
 	
 	#if sprinting == true and is_on_floor():
@@ -204,7 +205,7 @@ func _on_small_powerup_timeout() -> void:
 	anim.play_backwards("small_powerup")
 	small_active = false
 	small_timer.stop()
-
+	
 func _check_dash():
 	if Input.is_action_just_pressed("dash"):
 		if(dash_active):
@@ -218,6 +219,12 @@ func _check_dash():
 			velocity += dash_vector
 			print("dash used")
 			dash_active = false
+			
+func _win():
+	$powerup_pickup.hide()
+	$win_screen.show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().paused = true
 
 func _play_footstep_audio():
 	footstep_audio.pitch_scale = randf_range(0.6, 0.8)
@@ -252,3 +259,8 @@ func _powerup_ui(label):
 	pickup_timer.timeout.connect(func(): $powerup_pickup.hide())
 	pickup_timer.start()
 	
+func _restart():
+	$powerup_pickup.hide()
+	$restart_screen.show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().paused = true

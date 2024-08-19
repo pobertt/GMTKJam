@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://day7l83sv3sab"]
+[gd_scene load_steps=10 format=3 uid="uid://day7l83sv3sab"]
 
+[ext_resource type="Script" path="res://ui_scenes/test_level.gd" id="1_am0i7"]
 [ext_resource type="PackedScene" uid="uid://b4oy3gjuok4k8" path="res://player/player.tscn" id="2_bopjh"]
 [ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://player/powerup.tscn" id="2_ntqnr"]
 
@@ -18,6 +19,7 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="TestLevel" type="Node3D"]
+script = ExtResource("1_am0i7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.8474, 0.530955, 0, -0.530955, -0.8474, 0, 30.6754, -61.2635)
@@ -84,3 +86,7 @@ type = 1
 [node name="powerup3" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80183, 0, -4.43068)
 type = 2
+
+[node name="powerup4" parent="." instance=ExtResource("2_ntqnr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353677, 7.59407, 11.4173)
+type = 3
