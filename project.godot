@@ -60,4 +60,4 @@ MovePiece={
 
 [physics]
 
-3d/default_gravity=20.0
+3d/default_gravity=25.0

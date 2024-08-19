@@ -28,6 +28,7 @@ var dash_active : bool = false
 var crouching : bool = false
 var sprinting : bool = false
 var sliding : bool = false
+var walking : bool = false
 
 var gravity_vec = Vector3( )
 
@@ -49,6 +50,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var head = $cam_controller
 @onready var camera = $cam_controller/camera
 @onready var cam_marker: Marker3D = $cam_controller/marker
+@onready var footstep_audio: AudioStreamPlayer3D = $player_audios/footstep
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -60,6 +62,7 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))		
 
 func _physics_process(delta):
+	print(velocity)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -68,6 +71,11 @@ func _physics_process(delta):
 		
 	_check_sprint()
 	
+	#if sprinting == true and is_on_floor():
+		#anim.play("run_sound")
+	#elif walking == true and is_on_floor():
+		#anim.play("walk_sound")
+
 	if is_on_floor():
 		if 	_get_direction():
 			velocity.x = _get_direction().x * speed
@@ -135,6 +143,7 @@ func _check_jump():
 			
 		if jump_count < jumps:
 			jump_count += 1
+			$player_audios/jump.play()
 			if current_state == FLOOR:
 				velocity.y = JUMP_VELOCITY
 			elif current_state == WALL:
@@ -163,9 +172,11 @@ func _check_sprint():
 	if Input.is_action_pressed("sprint") and crouching == false:
 		speed = SPRINT_SPEED
 		sprinting = true
+		walking = false
 	else:
 		speed = WALK_SPEED
 		sprinting = false
+		walking = true
 		
 func _gain_dash(active):
 	if active == true:
@@ -195,12 +206,17 @@ func _on_small_powerup_timeout() -> void:
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
 		if(dash_active):
+			$player_audios/dash.play()
 			var aim = camera.get_global_transform().basis
 			var dash_direction = Vector3()
 			dash_direction += aim.z * (cam_marker.global_position.z * -(1/ cam_marker.global_position.z))
 			dash_direction = dash_direction.normalized()
 			var dash_vector = dash_direction * DASH_SPEED
-			print(dash_direction)
+			print(dash_vector)
 			velocity += dash_vector
 			print("dash used")
 			dash_active = false
+
+func _play_footstep_audio():
+	footstep_audio.pitch_scale = randf_range(0.6, 0.8)
+	footstep_audio.play()
