@@ -30,8 +30,6 @@ var sprinting : bool = false
 var sliding : bool = false
 var walking : bool = false
 
-var paused : bool = false
-
 var gravity_vec = Vector3( )
 
 const FLOOR = 0
@@ -50,7 +48,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $cam_controller/camera
 @onready var cam_marker: Marker3D = $cam_controller/marker
 @onready var footstep_audio: AudioStreamPlayer3D = $player_audios/footstep
-@onready var pause_menu: Control = $SubViewportContainer/SubViewport/Control_UI/pause_menu
+@onready var pause_menu: Control = $pause_menu
 @onready var small_timer: Timer = $small_powerup
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
@@ -64,6 +62,7 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))		
 
 func _physics_process(delta):
+	
 	#print(velocity)
 	# Add the gravity.
 	if not is_on_floor():
@@ -185,13 +184,13 @@ func _gain_dash(active):
 	if active == true:
 		print("dash active")
 		dash_active = active
-	#hud stuff below
+	_powerup_ui("DASH powerup")
 
 func _gain_jumps(active):
 	if active == true:
 		print("double jump active")
 		double_jump_active = active
-	#hud stuff below
+	_powerup_ui("DOUBLE JUMP powerup")
 	
 func _small_powerup(active):
 	if active == true:
@@ -199,7 +198,7 @@ func _small_powerup(active):
 		anim.play("small_powerup")
 		small_active = active
 		small_timer.start()
-	#hud stuff below
+	_powerup_ui("SMALL MAN powerup")
 
 func _on_small_powerup_timeout() -> void:
 	anim.play_backwards("small_powerup")
@@ -225,15 +224,31 @@ func _play_footstep_audio():
 	footstep_audio.play()
 
 func _pause_menu():
-	if get_tree().paused == false:
+	if get_tree().paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_tree().paused = false
+		pause_menu.hide()
+		
+	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
 		pause_menu.show()
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		pause_menu.hide()
-		get_tree().paused = false
+	
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		_pause_menu()
+		print("pause pressed")
+		$powerup_pickup.hide()
+
+func _powerup_ui(label):
+	$powerup_pickup/Label.text = label
+	$powerup_pickup.show()
+	var pickup_timer:Timer = Timer.new()
+	pickup_timer.wait_time = 3
+	add_child(pickup_timer)
+	pickup_timer.one_shot = false
+	pickup_timer.autostart = false
+	pickup_timer.timeout.connect(func(): $powerup_pickup.hide())
+	pickup_timer.start()
+	

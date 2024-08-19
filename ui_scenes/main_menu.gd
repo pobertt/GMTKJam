@@ -11,7 +11,7 @@ func _process(_delta):
 	pass
 	
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://build_map.tscn")
+	get_tree().change_scene_to_file("res://ui_scenes/test_level.tscn")
 	pass
 	
 func _on_quit_button_pressed():

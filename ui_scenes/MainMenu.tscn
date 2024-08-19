@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://7pcw7nja6pf2"]
+[gd_scene load_steps=3 format=3 uid="uid://7pcw7nja6pf2"]
 
 [ext_resource type="Script" path="res://ui_scenes/main_menu.gd" id="1_la8gf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_plwm7"]
+font_size = 64
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,37 +14,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_la8gf")
 
-[node name="StartButton" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -44.0
-offset_top = -116.0
-offset_right = 52.0
-offset_bottom = -85.0
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 56.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Start Game
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "START
 "
 
-[node name="QuitButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -17.0
-offset_top = -71.0
-offset_right = 25.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Quit
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "QUIT
 "
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.0
+offset_top = 120.0
+offset_right = 203.0
+offset_bottom = 208.0
+grow_horizontal = 2
+rotation = 0.000908585
+text = "block jumper"
+label_settings = SubResource("LabelSettings_plwm7")
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

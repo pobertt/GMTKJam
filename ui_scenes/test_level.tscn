@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://day7l83sv3sab"]
 
-[ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://powerup.tscn" id="2_ntqnr"]
-[ext_resource type="PackedScene" uid="uid://v54ijp0hxksf" path="res://start_block.tscn" id="3_85nwm"]
+[ext_resource type="PackedScene" uid="uid://b4oy3gjuok4k8" path="res://player/player.tscn" id="2_bopjh"]
+[ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://player/powerup.tscn" id="2_ntqnr"]
 
 [sub_resource type="Environment" id="Environment_36fah"]
 
@@ -71,16 +71,16 @@ mesh = SubResource("BoxMesh_f8gw7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_frwif")
 
+[node name="player" parent="." instance=ExtResource("2_bopjh")]
+transform = Transform3D(0.966049, 0.000687216, -0.258359, -0.000677354, 1, 0.000127182, 0.258359, 5.21303e-05, 0.966049, 0.435269, 0.95908, -10.7939)
+
 [node name="powerup" parent="." instance=ExtResource("2_ntqnr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19695, -0.212641, -8.65879)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.43068)
 
 [node name="powerup2" parent="." instance=ExtResource("2_ntqnr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.29323, 0.101123, -7.19612)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24988, 0, -4.43068)
 type = 1
 
 [node name="powerup3" parent="." instance=ExtResource("2_ntqnr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0827, -0.567271, -10.7339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80183, 0, -4.43068)
 type = 2
-
-[node name="start_block" parent="." instance=ExtResource("3_85nwm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0221829, -4.76837e-07, -15.9721)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ygpobru5c8pn"]
 
-[ext_resource type="Script" path="res://powerup.gd" id="1_3ysj5"]
+[ext_resource type="Script" path="res://player/powerup.gd" id="1_3ysj5"]
 [ext_resource type="AudioStream" uid="uid://bf4jbyf68uvt7" path="res://SFX/powerup pickup.wav" id="2_o2lh1"]
 [ext_resource type="AudioStream" uid="uid://dd28lb65htpkg" path="res://SFX/get small.wav" id="3_vanyj"]
 
