@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BlockType" load_steps=3 format=3 uid="uid://b1ih3l17rdy8e"]
+
+[ext_resource type="PackedScene" uid="uid://jw37c15042cq" path="res://map_generation/resources/block_types/block_scenes/wall.tscn" id="1_xmxob"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_qxuyq"]
+
+[resource]
+script = ExtResource("2_qxuyq")
+_name = "Wall"
+packed_scene = ExtResource("1_xmxob")

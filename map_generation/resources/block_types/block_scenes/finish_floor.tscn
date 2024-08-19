@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb2lj48hh5dt"]
+
+[ext_resource type="ArrayMesh" uid="uid://bspvj5s636vss" path="res://assets/models/tiles/finish_tile.res" id="1_lf4kb"]
+[ext_resource type="Texture2D" uid="uid://bwrlkgousr7ma" path="res://assets/textures/colour_palette_resurrect.png" id="2_m8rdx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rt0rk"]
+shading_mode = 0
+albedo_texture = ExtResource("2_m8rdx")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppsai"]
+size = Vector3(2, 0.1, 2)
+
+[node name="floor" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lf4kb")
+surface_material_override/0 = SubResource("StandardMaterial3D_rt0rk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ppsai")

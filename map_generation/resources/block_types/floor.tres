@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BlockType" load_steps=3 format=3 uid="uid://ccl64xwkchk81"]
+
+[ext_resource type="PackedScene" uid="uid://c5qdiq6gee24v" path="res://map_generation/resources/block_types/block_scenes/floor.tscn" id="1_2pxpq"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="1_a0qs5"]
+
+[resource]
+script = ExtResource("1_a0qs5")
+_name = "Floor"
+packed_scene = ExtResource("1_2pxpq")

@@ -1,0 +1,92 @@
+[gd_scene load_steps=16 format=4 uid="uid://ioe1r21achse"]
+
+[ext_resource type="Script" path="res://map_generation/main_scenes/build_map.gd" id="1_hvjjc"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_dke0s"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_level_info.gd" id="2_jrc33"]
+[ext_resource type="Resource" uid="uid://ccl64xwkchk81" path="res://map_generation/resources/block_types/floor.tres" id="3_p5ejt"]
+[ext_resource type="Resource" uid="uid://c44kyx526oryn" path="res://map_generation/resources/block_types/floor_finish.tres" id="4_bnjki"]
+[ext_resource type="Script" path="res://map_generation/resources/levels/level.gd" id="5_3c58o"]
+[ext_resource type="Resource" uid="uid://0tfr00ibyd6c" path="res://map_generation/resources/block_types/floor_start.tres" id="5_ongy2"]
+[ext_resource type="Texture2D" uid="uid://be5maxnqbmgb5" path="res://map_generation/2d_sprites/temp_blocks.png" id="6_w5b5n"]
+[ext_resource type="Resource" uid="uid://b1ih3l17rdy8e" path="res://map_generation/resources/block_types/wall.tres" id="6_x25p5"]
+[ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="8_6skc2"]
+
+[sub_resource type="Resource" id="Resource_5yw7d"]
+script = ExtResource("2_jrc33")
+block_type = ExtResource("3_p5ejt")
+amount = 10
+
+[sub_resource type="Resource" id="Resource_g3l68"]
+script = ExtResource("2_jrc33")
+block_type = ExtResource("6_x25p5")
+amount = 15
+
+[sub_resource type="Resource" id="Resource_kkec0"]
+script = ExtResource("5_3c58o")
+blocks = Array[ExtResource("2_jrc33")]([SubResource("Resource_5yw7d"), SubResource("Resource_g3l68")])
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q5chw"]
+texture = ExtResource("6_w5b5n")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+3:0/0 = 0
+2:0/0 = 0
+1:1/0 = 0
+1:2/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lomut"]
+tile_size = Vector2i(32, 32)
+sources/2 = SubResource("TileSetAtlasSource_q5chw")
+
+[node name="BuildMap" type="Node"]
+script = ExtResource("1_hvjjc")
+level_info = SubResource("Resource_kkec0")
+block_types = Array[ExtResource("2_dke0s")]([ExtResource("3_p5ejt"), ExtResource("4_bnjki"), ExtResource("5_ongy2"), ExtResource("6_x25p5")])
+
+[node name="tile_map" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAANAAUAAgABAAAAAAANAAkAAgACAAAAAAANAA0AAgABAAAAAAAOAAUAAgABAAAAAAAOAA0AAgABAAAAAAAPAAUAAgABAAAAAAAPAA0AAgABAAAAAAAQAAUAAgABAAAAAAAQAA0AAgABAAAAAAARAAUAAgABAAAAAAARAA0AAgABAAAAAAASAAUAAgABAAAAAAASAA0AAgABAAAAAAATAAUAAgABAAAAAAATAA0AAgABAAAAAAAUAAUAAgABAAAAAAAUAA0AAgABAAAAAAAVAAUAAgABAAAAAAAVAA0AAgABAAAAAAAWAAUAAgABAAAAAAAWAA0AAgABAAAAAAAXAAUAAgABAAAAAAAXAA0AAgABAAAAAAAYAAUAAgABAAAAAAAYAAkAAgABAAAAAAAYAA0AAgABAAAAAAAMAAUAAgABAAAAAAAMAAYAAgABAAAAAAAMAAcAAgABAAAAAAAMAAgAAgABAAAAAAAMAAkAAgABAAAAAAAMAAoAAgABAAAAAAAMAAsAAgABAAAAAAAMAAwAAgABAAAAAAAMAA0AAgABAAAAAAAXAAkAAgADAAAAAAAYAAYAAgABAAAAAAAYAAcAAgABAAAAAAAYAAgAAgABAAAAAAAYAAoAAgABAAAAAAAYAAsAAgABAAAAAAAYAAwAAgABAAAAAAARAAgAAgAAAAAAAAATAAgAAgAAAAAAAAAQAAoAAgAAAAAAAAARAAsAAgAAAAAAAAASAAsAAgAAAAAAAAATAAsAAgAAAAAAAAAUAAoAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_lomut")
+collision_visibility_mode = 1
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui"]
+layout_mode = 0
+offset_left = 906.0
+offset_top = 477.0
+offset_right = 1080.0
+offset_bottom = 573.0
+
+[node name="try_button" type="Button" parent="ui/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_6skc2")
+text = "try level
+"
+
+[node name="reset_button" type="Button" parent="ui/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_6skc2")
+text = "Reload 
+"
+
+[node name="block_container" type="VBoxContainer" parent="ui"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 138.0
+offset_right = 303.0
+offset_bottom = 481.0
+
+[connection signal="pressed" from="ui/VBoxContainer/try_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ui/VBoxContainer/reset_button" to="." method="_reload_button_pressed"]
