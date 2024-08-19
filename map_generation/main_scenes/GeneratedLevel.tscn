@@ -19,7 +19,7 @@ cell_size = Vector3(4, 4, 4)
 [node name="stage" type="Node3D" parent="."]
 
 [node name="player" parent="stage" instance=ExtResource("4_0olle")]
-transform = Transform3D(1.03575, 0, 0, 0, 1.03575, 0, 0, 0, 1.03575, 11, 1.82934, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83062, 1.82934, 5.88066)
 
 [node name="env" type="Node3D" parent="."]
 

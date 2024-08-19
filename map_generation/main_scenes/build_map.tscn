@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://ioe1r21achse"]
+[gd_scene load_steps=18 format=4 uid="uid://ioe1r21achse"]
 
 [ext_resource type="Script" path="res://map_generation/main_scenes/build_map.gd" id="1_hvjjc"]
 [ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_dke0s"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://be5maxnqbmgb5" path="res://map_generation/2d_sprites/temp_blocks.png" id="6_w5b5n"]
 [ext_resource type="Resource" uid="uid://b1ih3l17rdy8e" path="res://map_generation/resources/block_types/wall.tres" id="6_x25p5"]
 [ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="8_6skc2"]
+[ext_resource type="Texture2D" uid="uid://xy7fh2aprkin" path="res://assets/textures/temp_blocks.png" id="11_5sq0i"]
 
 [sub_resource type="Resource" id="Resource_5yw7d"]
 script = ExtResource("2_jrc33")
@@ -41,15 +42,19 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_lomut"]
 tile_size = Vector2i(32, 32)
-sources/2 = SubResource("TileSetAtlasSource_q5chw")
+sources/0 = SubResource("TileSetAtlasSource_q5chw")
 
-[node name="BuildMap" type="Node"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mee0k"]
+atlas = ExtResource("11_5sq0i")
+region = Rect2(32, 0, 32, 32)
+
+[node name="BuildMap" type="Node2D"]
 script = ExtResource("1_hvjjc")
 level_info = SubResource("Resource_kkec0")
 block_types = Array[ExtResource("2_dke0s")]([ExtResource("3_p5ejt"), ExtResource("4_bnjki"), ExtResource("5_ongy2"), ExtResource("6_x25p5")])
 
 [node name="tile_map" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAANAAUAAgABAAAAAAANAAkAAgACAAAAAAANAA0AAgABAAAAAAAOAAUAAgABAAAAAAAOAA0AAgABAAAAAAAPAAUAAgABAAAAAAAPAA0AAgABAAAAAAAQAAUAAgABAAAAAAAQAA0AAgABAAAAAAARAAUAAgABAAAAAAARAA0AAgABAAAAAAASAAUAAgABAAAAAAASAA0AAgABAAAAAAATAAUAAgABAAAAAAATAA0AAgABAAAAAAAUAAUAAgABAAAAAAAUAA0AAgABAAAAAAAVAAUAAgABAAAAAAAVAA0AAgABAAAAAAAWAAUAAgABAAAAAAAWAA0AAgABAAAAAAAXAAUAAgABAAAAAAAXAA0AAgABAAAAAAAYAAUAAgABAAAAAAAYAAkAAgABAAAAAAAYAA0AAgABAAAAAAAMAAUAAgABAAAAAAAMAAYAAgABAAAAAAAMAAcAAgABAAAAAAAMAAgAAgABAAAAAAAMAAkAAgABAAAAAAAMAAoAAgABAAAAAAAMAAsAAgABAAAAAAAMAAwAAgABAAAAAAAMAA0AAgABAAAAAAAXAAkAAgADAAAAAAAYAAYAAgABAAAAAAAYAAcAAgABAAAAAAAYAAgAAgABAAAAAAAYAAoAAgABAAAAAAAYAAsAAgABAAAAAAAYAAwAAgABAAAAAAARAAgAAgAAAAAAAAATAAgAAgAAAAAAAAAQAAoAAgAAAAAAAAARAAsAAgAAAAAAAAASAAsAAgAAAAAAAAATAAsAAgAAAAAAAAAUAAoAAgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAANAAUAAAABAAAAAAANAAkAAAACAAAAAAANAA0AAAABAAAAAAAOAAUAAAABAAAAAAAOAA0AAAABAAAAAAAPAAUAAAABAAAAAAAPAA0AAAABAAAAAAAQAAUAAAABAAAAAAAQAA0AAAABAAAAAAARAAUAAAABAAAAAAARAA0AAAABAAAAAAASAAUAAAABAAAAAAASAA0AAAABAAAAAAATAAUAAAABAAAAAAATAA0AAAABAAAAAAAUAAUAAAABAAAAAAAUAA0AAAABAAAAAAAVAAUAAAABAAAAAAAVAA0AAAABAAAAAAAWAAUAAAABAAAAAAAWAA0AAAABAAAAAAAXAAUAAAABAAAAAAAXAA0AAAABAAAAAAAYAAUAAAABAAAAAAAYAAkAAAABAAAAAAAYAA0AAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAAMAAgAAAABAAAAAAAMAAkAAAABAAAAAAAMAAoAAAABAAAAAAAMAAsAAAABAAAAAAAMAAwAAAABAAAAAAAMAA0AAAABAAAAAAAXAAkAAAADAAAAAAAYAAYAAAABAAAAAAAYAAcAAAABAAAAAAAYAAgAAAABAAAAAAAYAAoAAAABAAAAAAAYAAsAAAABAAAAAAAYAAwAAAABAAAAAAARAAgAAAAAAAAAAAATAAgAAAAAAAAAAAAQAAoAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAoAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lomut")
 collision_visibility_mode = 1
 
@@ -87,6 +92,10 @@ offset_left = 88.0
 offset_top = 138.0
 offset_right = 303.0
 offset_bottom = 481.0
+
+[node name="build_sprite" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_mee0k")
 
 [connection signal="pressed" from="ui/VBoxContainer/try_button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ui/VBoxContainer/reset_button" to="." method="_reload_button_pressed"]
