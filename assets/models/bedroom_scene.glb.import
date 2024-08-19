@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://kx0p53c3rtpo"
-path="res://.godot/imported/bedroom_scene.glb-ede6bf7d39025eda5a0405510c9e3244.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/bedroom_scene.glb"
-dest_files=["res://.godot/imported/bedroom_scene.glb-ede6bf7d39025eda5a0405510c9e3244.scn"]
 
 [params]
 

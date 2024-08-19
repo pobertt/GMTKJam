@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://b4oy3gjuok4k8"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_0qa20"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_0qa20"]
 [ext_resource type="AudioStream" uid="uid://dyfrasw5cj2n0" path="res://SFX/individual step.wav" id="2_q2peh"]
 [ext_resource type="AudioStream" uid="uid://b25p0o55otcqn" path="res://SFX/dash.wav" id="3_xkqg0"]
 [ext_resource type="AudioStream" uid="uid://25o2p76vqacd" path="res://SFX/jump.wav" id="4_1w5m8"]
