@@ -11,12 +11,37 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_la8gf")
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 553.0
-offset_top = 390.0
-offset_right = 639.0
-offset_bottom = 421.0
-text = "Build Map"
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -116.0
+offset_right = 52.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start Game
+"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -71.0
+offset_right = 25.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit
+"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

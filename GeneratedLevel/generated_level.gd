@@ -7,7 +7,7 @@ func _ready():
 	_set_dress_level()
 	$GridMap.set_cell_item(Vector3i(MapGenResource.PlayerStart.x, 0, MapGenResource.PlayerStart.y), 2, 0)
 	$GridMap.set_cell_item(Vector3i(MapGenResource.PlayerEnd.x, 0, MapGenResource.PlayerEnd.y), 0, 0)
-	$player.global_position = $".".to_global($GridMap.map_to_local($GridMap.get_used_cells_by_item(2)[0])) + Vector3(0,5,0)
+	$stage/player.global_position = $".".to_global($GridMap.map_to_local($GridMap.get_used_cells_by_item(2)[0])) + Vector3(0,5,0)
 	
 	pass # Replace with function body.
 

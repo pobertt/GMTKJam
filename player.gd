@@ -194,13 +194,13 @@ func _on_small_powerup_timeout() -> void:
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
-		if(dash_active):
+		if(true):
 			var aim = camera.get_global_transform().basis
 			var dash_direction = Vector3()
 			dash_direction += aim.z * (cam_marker.global_position.z * -(1/ cam_marker.global_position.z))
 			dash_direction = dash_direction.normalized()
 			var dash_vector = dash_direction * DASH_SPEED
-			print(dash_direction)
+			print(dash_vector)
 			velocity += dash_vector
 			print("dash used")
 			dash_active = false
