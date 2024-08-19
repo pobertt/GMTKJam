@@ -90,4 +90,5 @@ sprite_frames = SubResource("SpriteFrames_iupi5")
 animation = &"Blocks_SpriteSheet"
 speed_scale = 0.0
 script = ExtResource("2_og3ts")
+_mesh_library_index = null
 block_types = Array[ExtResource("3_oti6m")]([ExtResource("4_uahd5"), ExtResource("5_m3pj4")])

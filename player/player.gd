@@ -50,7 +50,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $cam_controller/camera
 @onready var cam_marker: Marker3D = $cam_controller/marker
 @onready var footstep_audio: AudioStreamPlayer3D = $player_audios/footstep
-@onready var pause_menu: Control = $SubViewportContainer/SubViewport/Control_UI/pause_menu
+#@onready var pause_menu: Control = $SubViewportContainer/SubViewport/Control_UI/pause_menu
 @onready var small_timer: Timer = $small_powerup
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
@@ -228,10 +228,10 @@ func _pause_menu():
 	if get_tree().paused == false:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
-		pause_menu.show()
+		#pause_menu.show()
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		pause_menu.hide()
+		#pause_menu.hide()
 		get_tree().paused = false
 
 func _input(event):
