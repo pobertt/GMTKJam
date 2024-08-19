@@ -83,4 +83,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0827, -0.567271, -10.7339)
 type = 2
 
 [node name="start_block" parent="." instance=ExtResource("3_85nwm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0221829, -4.76837e-07, -38.1309)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0221829, -4.76837e-07, -27.0385)
