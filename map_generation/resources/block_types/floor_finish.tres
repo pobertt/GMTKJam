@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BlockType" load_steps=3 format=3 uid="uid://c44kyx526oryn"]
+
+[ext_resource type="PackedScene" uid="uid://bb2lj48hh5dt" path="res://map_generation/resources/block_types/block_scenes/finish_floor.tscn" id="1_tge4w"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_36vop"]
+
+[resource]
+script = ExtResource("2_36vop")
+_name = "Finish Floor"
+packed_scene = ExtResource("1_tge4w")

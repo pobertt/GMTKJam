@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="GMTKJam"
-run/main_scene="res://test_level.tscn"
+run/main_scene="res://ui_scenes/test_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://map_generation/": "orange",
+"res://player/": "yellow",
+"res://ui_scenes/": "green"
+}
 
 [input]
 
