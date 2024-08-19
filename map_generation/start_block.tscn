@@ -17,7 +17,7 @@ script = ExtResource("1_cddr0")
 player_scene = ExtResource("2_cswdg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("BoxMesh_j4tsf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
@@ -26,7 +26,7 @@ mesh = SubResource("BoxMesh_j4tsf")
 shape = SubResource("ConcavePolygonShape3D_pcey3")
 
 [node name="spawn_pos" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17238, 0)
 
 [node name="player" parent="." instance=ExtResource("2_cswdg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8293, 0)

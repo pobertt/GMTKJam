@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4oy3gjuok4k8"]
+[gd_scene load_steps=13 format=3 uid="uid://b4oy3gjuok4k8"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_0qa20"]
+[ext_resource type="Script" path="res://player.gd" id="1_0qa20"]
 [ext_resource type="AudioStream" uid="uid://dyfrasw5cj2n0" path="res://SFX/individual step.wav" id="2_q2peh"]
 [ext_resource type="AudioStream" uid="uid://b25p0o55otcqn" path="res://SFX/dash.wav" id="3_xkqg0"]
 [ext_resource type="AudioStream" uid="uid://25o2p76vqacd" path="res://SFX/jump.wav" id="4_1w5m8"]
-[ext_resource type="PackedScene" uid="uid://cojvgu3wuyscn" path="res://pause_menu.tscn" id="5_y2ghk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omppl"]
 height = 4.0
@@ -227,39 +226,5 @@ pitch_scale = 0.9
 [node name="jump" type="AudioStreamPlayer3D" parent="player_audios"]
 stream = ExtResource("4_1w5m8")
 volume_db = -30.0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Control_UI" type="Control" parent="SubViewportContainer/SubViewport"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="pause_menu" parent="SubViewportContainer/SubViewport/Control_UI" instance=ExtResource("5_y2ghk")]
-layout_mode = 1
 
 [connection signal="timeout" from="small_powerup" to="." method="_on_small_powerup_timeout"]
