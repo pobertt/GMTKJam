@@ -15,9 +15,9 @@ var start_coord := Vector2i(12,5) # only need active area of tilemap
 var end_coord := Vector2i(24,13)
 
 var block_buttons : Array[BlockButton]
+var tile_map: TileMapLayer
 
 # onready vars
-@onready var tile_map: TileMapLayer = $tile_map
 @onready var simultaneous_scene = preload("res://map_generation/main_scenes/GeneratedLevel.tscn").instantiate()
 @onready var block_container: VBoxContainer = $ui/block_container
 @onready var build_sprite: Sprite2D = $build_sprite
@@ -41,6 +41,10 @@ func set_up_level() -> void:
 			button.spawn_block.connect(activate_block_tool)
 			block_buttons.append(button)
 			block_container.add_child(button)
+		
+		tile_map = level_info.level_tilemap.instantiate()
+		add_child(tile_map)
+		move_child(tile_map, 0)
 
 func activate_block_tool(type: BlockType):
 	#print(type._name)
@@ -66,7 +70,7 @@ func activate_block_tool(type: BlockType):
 		# make buttons inactive to prevent losing tiles
 		set_block_button_enabled(false)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_active_tool != null:
 		var mouse_pos = get_global_mouse_position()
 		

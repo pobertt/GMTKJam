@@ -5,6 +5,7 @@ class_name GeneratedLevel
 
 # onready vars
 @onready var grid_map: GridMap = $GridMap
+@onready var player: CharacterBody3D = $stage/player
 
 
 func _ready():
@@ -21,6 +22,9 @@ func set_dress_level():
 		grid_map.add_child(block)
 		
 		block.global_transform.origin = world_position - Vector3(0,1,0)
-		block.scale = Vector3(2,2,2) # correcting wrong sized scenes HACKY
+		block.scale = Vector3(2,2,2) # correcting wrong sized scenes HACKYs
+		
+		if block_info.block_type._name == "Start Floor":
+			player.global_position = block.global_position + Vector3(0,1.2,0) # hacky way of putting player on spawn floor
 		
 		print("Instantiated block: ", block_info.block_type._name, " at ", grid_pos)

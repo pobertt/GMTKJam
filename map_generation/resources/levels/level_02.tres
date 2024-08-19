@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=6 format=3 uid="uid://dbxvufjxarp7n"]
+
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_level_info.gd" id="1_ymll4"]
+[ext_resource type="Resource" uid="uid://ccl64xwkchk81" path="res://map_generation/resources/block_types/floor.tres" id="2_63oeb"]
+[ext_resource type="PackedScene" uid="uid://bp710o831quox" path="res://map_generation/resources/levels/tilemap_scenes/level_02.tscn" id="3_28aoj"]
+[ext_resource type="Script" path="res://map_generation/resources/levels/level.gd" id="4_pvuhx"]
+
+[sub_resource type="Resource" id="Resource_e7dav"]
+script = ExtResource("1_ymll4")
+block_type = ExtResource("2_63oeb")
+amount = 8
+
+[resource]
+script = ExtResource("4_pvuhx")
+blocks = Array[ExtResource("1_ymll4")]([SubResource("Resource_e7dav")])
+level_tilemap = ExtResource("3_28aoj")
