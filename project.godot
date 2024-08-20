@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="GMTKJam"
-run/main_scene="res://ui_scenes/MainMenu.tscn"
+run/main_scene="res://ui_scenes/splash.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.419608, 0.243137, 0.458824, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd86ksyrhkm34"]
+[gd_scene load_steps=8 format=3 uid="uid://bd86ksyrhkm34"]
 
 [ext_resource type="Script" path="res://map_generation/resources/block_types/block_scripts/launch_floor.gd" id="1_bm8fl"]
 [ext_resource type="ArrayMesh" uid="uid://bgonu1b0o7m2f" path="res://assets/models/tiles/floor_tile.res" id="1_jxvwb"]
 [ext_resource type="Texture2D" uid="uid://bwrlkgousr7ma" path="res://assets/textures/colour_palette_resurrect.png" id="2_2so01"]
+[ext_resource type="ArrayMesh" uid="uid://08tcev7uddy0" path="res://assets/models/tiles/jump_pad.res" id="4_gdoyq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04tm6"]
 shading_mode = 0
@@ -19,6 +20,11 @@ script = ExtResource("1_bm8fl")
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_jxvwb")
+surface_material_override/0 = SubResource("StandardMaterial3D_04tm6")
+
+[node name="mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.87398, 0, 0, 0, 1, 0, 0, 0, 1.87398, 0, 0.0677178, 0)
+mesh = ExtResource("4_gdoyq")
 surface_material_override/0 = SubResource("StandardMaterial3D_04tm6")
 
 [node name="Area3D" type="Area3D" parent="."]

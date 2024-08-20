@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=12 format=3 uid="uid://dcl7va4vp6y8"]
+
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_level_info.gd" id="1_cddff"]
+[ext_resource type="Resource" uid="uid://bypajv6xrsvfp" path="res://map_generation/resources/block_types/launch_floor.tres" id="2_sfudf"]
+[ext_resource type="Resource" uid="uid://ccl64xwkchk81" path="res://map_generation/resources/block_types/floor.tres" id="2_xelew"]
+[ext_resource type="Resource" uid="uid://djxsn47hskwts" path="res://map_generation/resources/block_types/wall_jump_wall.tres" id="3_uhwyx"]
+[ext_resource type="Script" path="res://map_generation/resources/levels/level.gd" id="4_g568f"]
+[ext_resource type="Resource" uid="uid://b0mxsblb0ae1j" path="res://map_generation/resources/block_types/brittle_floor.tres" id="4_iytqi"]
+[ext_resource type="PackedScene" uid="uid://degaksix5ak5h" path="res://map_generation/resources/levels/tilemap_scenes/level_13.tscn" id="5_hro6d"]
+
+[sub_resource type="Resource" id="Resource_fuybv"]
+script = ExtResource("1_cddff")
+block_type = ExtResource("2_sfudf")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_har6s"]
+script = ExtResource("1_cddff")
+block_type = ExtResource("3_uhwyx")
+amount = 4
+
+[sub_resource type="Resource" id="Resource_b6sy3"]
+script = ExtResource("1_cddff")
+block_type = ExtResource("4_iytqi")
+amount = 4
+
+[sub_resource type="Resource" id="Resource_0acfq"]
+script = ExtResource("1_cddff")
+block_type = ExtResource("2_xelew")
+amount = 2
+
+[resource]
+script = ExtResource("4_g568f")
+number = 13
+blocks = Array[ExtResource("1_cddff")]([SubResource("Resource_fuybv"), SubResource("Resource_har6s"), SubResource("Resource_b6sy3"), SubResource("Resource_0acfq")])
+level_tilemap = ExtResource("5_hro6d")
