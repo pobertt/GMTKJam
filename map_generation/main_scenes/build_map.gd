@@ -7,7 +7,7 @@ var block_list : Array[BlockBuildInfo]
 @export var block_types: Array[BlockType]
 
 # tool vars
-enum Tools{EMPTY, FLOOR, WALL}
+enum Tools{EMPTY, FLOOR, WALL, ICEFLOOR}
 var active_tool: Tools
 var is_active_tool := false
 
@@ -66,6 +66,9 @@ func activate_block_tool(type: BlockType):
 			"Wall":
 				active_tool = Tools.WALL
 				build_sprite.texture.region = Rect2(Vector2(32,0), Vector2(32,32))
+			"Ice Floor":
+				active_tool = Tools.ICEFLOOR
+				build_sprite.texture.region = Rect2(Vector2(0,96), Vector2(32,32))
 		
 		build_sprite.show()
 		is_active_tool = true
