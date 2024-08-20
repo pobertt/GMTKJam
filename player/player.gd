@@ -24,6 +24,7 @@ var jump_count : int = 0
 @export var jumps : int = 1
 var dash_count : int = 0
 @export var dashs : int = 0
+var still_ice : bool = false
 
 var double_jump_active : bool = false
 var wall_jump_active : bool = false
@@ -231,12 +232,18 @@ func _check_dash():
 			
 # Custom Tile Behavior
 func _player_on_ice():
-	ice = true;
+	if (ice == true):
+		still_ice = true
+		return
+	ice = true
 	ice_vec = Vector3(velocity.x, 0, velocity.z)
 	print(ice_vec)
 
 func _player_off_ice():
-	ice = false
+	if (still_ice == true):
+		still_ice = false
+	else:
+		ice = false
 
 	
 func _launch_player():
