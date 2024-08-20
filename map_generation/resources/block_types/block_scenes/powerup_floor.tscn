@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcjcjcqtqrwm7"]
+[gd_scene load_steps=11 format=3 uid="uid://bcjcjcqtqrwm7"]
 
 [ext_resource type="ArrayMesh" uid="uid://bgonu1b0o7m2f" path="res://assets/models/tiles/floor_tile.res" id="1_w6sp0"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_scenes/powerup_floor.gd" id="1_x62vu"]
 [ext_resource type="Texture2D" uid="uid://bwrlkgousr7ma" path="res://assets/textures/colour_palette_resurrect.png" id="2_trnpm"]
 [ext_resource type="ArrayMesh" uid="uid://cd5q7twgdn70h" path="res://assets/models/tiles/powerup_stud.res" id="3_e0qba"]
+[ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://player/powerup.tscn" id="4_cbef6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04tm6"]
 shading_mode = 0
@@ -10,6 +12,75 @@ albedo_texture = ExtResource("2_trnpm")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ppsai"]
 size = Vector3(2, 0.1, 2)
+
+[sub_resource type="Animation" id="Animation_i45cf"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh2:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.977116, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh2:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh2:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("mesh2:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("mesh2:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_vp0ub"]
 resource_name = "default"
@@ -83,75 +154,6 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 2, 4)
 }
 
-[sub_resource type="Animation" id="Animation_i45cf"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("mesh2:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("mesh2:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.977116, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("mesh2:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("mesh2:rotation:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("mesh2:rotation:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("mesh2:rotation:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_osnt7"]
 _data = {
 "RESET": SubResource("Animation_i45cf"),
@@ -159,13 +161,14 @@ _data = {
 }
 
 [node name="floor" type="Node3D"]
+script = ExtResource("1_x62vu")
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_w6sp0")
 surface_material_override/0 = SubResource("StandardMaterial3D_04tm6")
 
 [node name="mesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-3.67929e-08, 0.841724, 0, -0.841724, -3.67929e-08, 0, 0, 0, 0.841724, 0, 0.977116, 0)
+transform = Transform3D(-3.04703e-06, 0.841724, 0, -0.841724, -3.04703e-06, 0, 0, 0, 0.841724, 0, 0.977116, 0)
 mesh = ExtResource("3_e0qba")
 surface_material_override/0 = SubResource("StandardMaterial3D_04tm6")
 
@@ -179,3 +182,8 @@ libraries = {
 "": SubResource("AnimationLibrary_osnt7")
 }
 autoplay = "default"
+
+[node name="powerup" parent="." instance=ExtResource("4_cbef6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974189, 0)
+
+[connection signal="Collected" from="powerup" to="." method="_collected"]

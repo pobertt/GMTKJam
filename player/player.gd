@@ -1,14 +1,14 @@
 extends CharacterBody3D
 
 var speed
-const WALK_SPEED = 8
+const WALK_SPEED = 4
 const ICE_SPEED = 1.5
-const SPRINT_SPEED = 16
+const SPRINT_SPEED = 8
 const SLIDE_SPEED = 25
-const DASH_SPEED = 50
-const JUMP_VELOCITY = 15
-const WALL_JUMP_VEL = 12
-const LAUNCH_PLAYER_VEL = 30
+const DASH_SPEED = 25
+const JUMP_VELOCITY = 9
+const WALL_JUMP_VEL = 6
+const LAUNCH_PLAYER_VEL = 18
 const SENSITIVITY = 0.007
 
 # Bob variables.
@@ -26,6 +26,7 @@ var dash_count : int = 0
 @export var dashs : int = 0
 
 var double_jump_active : bool = false
+var wall_jump_active : bool = false
 var dash_active : bool = false
 var crouching : bool = false
 var sprinting : bool = false
@@ -129,7 +130,7 @@ func _get_direction() -> Vector3:
 	return direction
 	
 func _update_state():
-	if is_on_wall_only():
+	if is_on_wall_only() && wall_jump_active == true:
 		current_state = state.WALL
 	elif is_on_floor():
 		if (ice == false):
@@ -236,10 +237,22 @@ func _player_on_ice():
 
 func _player_off_ice():
 	ice = false
-	print("OFFOFFOFF")
+
 	
 func _launch_player():
 	velocity = Vector3(velocity.x,LAUNCH_PLAYER_VEL,velocity.z)
+	
+func _on_wall_jump_entered(body: Node3D) -> void:
+	if (body.is_in_group("wall_jump")):
+		print("this is a wall")
+		wall_jump_active = true
+		pass
+		
+func _on_wall_jump_exited(body: Node3D) -> void:
+	if (body.is_in_group("wall_jump")):
+		print("left the wall")
+		wall_jump_active = false
+		pass
 
 			
 func _win():

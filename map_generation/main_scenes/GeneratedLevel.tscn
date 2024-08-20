@@ -57,7 +57,7 @@ cell_size = Vector3(4, 4, 4)
 
 [node name="stage" type="Node3D" parent="."]
 
-[node name="player" parent="stage" groups=["player"] instance=ExtResource("4_0olle")]
+[node name="player" parent="stage" instance=ExtResource("4_0olle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.1, 2)
 
 [node name="death_area" type="Area3D" parent="stage"]
