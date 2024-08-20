@@ -9,10 +9,12 @@ var amount: int
 # onready vars
 @onready var number_label: Label = $number_label
 @onready var description_label: Label = $description_label
+@onready var name_label: Label = $name_label
 
 func _ready() -> void:
 	number_label.text = str("x", amount)
 	description_label.text = block_type.description
+	name_label.text = block_type._name
 	
 	icon = icon.duplicate()
 	

@@ -13,3 +13,10 @@ func _on_retry_button_pressed() -> void:
 	get_tree().paused = false
 	await get_tree().create_timer(0.4).timeout
 	get_parent().get_parent().get_parent().queue_free() # disgusting im sorry
+
+
+func _on_level_select_pressed() -> void:
+	SceneTransition.wipe_to_scene("res://ui_scenes/level_select/level_select.tscn")
+	get_tree().paused = false
+	await get_tree().create_timer(0.4).timeout
+	get_parent().get_parent().get_parent().queue_free() # disgusting im sorry
