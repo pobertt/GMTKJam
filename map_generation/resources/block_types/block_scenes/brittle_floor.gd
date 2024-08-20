@@ -10,7 +10,7 @@ func _on_area_body_entered(body: Node3D) -> void:
 
 func begin_fade():
 	animation_player.play("fade_out")
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	animation_player.play("fade_in")
 
 func disable_collision():

@@ -1,29 +1,17 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=10 format=3 uid="uid://cr75ay56p44pv"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=6 format=3 uid="uid://cr75ay56p44pv"]
 
 [ext_resource type="Script" path="res://map_generation/resources/block_types/block_level_info.gd" id="1_x4ths"]
 [ext_resource type="Script" path="res://map_generation/resources/levels/level.gd" id="2_0a6xh"]
 [ext_resource type="Resource" uid="uid://ccl64xwkchk81" path="res://map_generation/resources/block_types/floor.tres" id="2_8x5n0"]
-[ext_resource type="Resource" uid="uid://cs07iaavvgllj" path="res://map_generation/resources/block_types/ice_floor.tres" id="3_btxso"]
 [ext_resource type="PackedScene" uid="uid://c3rrx14cfhjpi" path="res://map_generation/resources/levels/tilemap_scenes/level_map_base.tscn" id="3_kvvlq"]
-[ext_resource type="Resource" uid="uid://b0mxsblb0ae1j" path="res://map_generation/resources/block_types/brittle_floor.tres" id="4_pseqo"]
 
 [sub_resource type="Resource" id="Resource_e7dav"]
 script = ExtResource("1_x4ths")
 block_type = ExtResource("2_8x5n0")
-amount = 8
-
-[sub_resource type="Resource" id="Resource_rp2ma"]
-script = ExtResource("1_x4ths")
-block_type = ExtResource("3_btxso")
-amount = 2
-
-[sub_resource type="Resource" id="Resource_u6i0t"]
-script = ExtResource("1_x4ths")
-block_type = ExtResource("4_pseqo")
-amount = 6
+amount = 9
 
 [resource]
 script = ExtResource("2_0a6xh")
 number = 1
-blocks = Array[ExtResource("1_x4ths")]([SubResource("Resource_e7dav"), SubResource("Resource_rp2ma"), SubResource("Resource_u6i0t")])
+blocks = Array[ExtResource("1_x4ths")]([SubResource("Resource_e7dav")])
 level_tilemap = ExtResource("3_kvvlq")

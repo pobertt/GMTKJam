@@ -14,6 +14,7 @@ var amount: int
 func _ready() -> void:
 	number_label.text = str("x", amount)
 	description_label.text = block_type.description
+	tooltip_text = block_type.description
 	name_label.text = block_type._name
 	
 	icon = icon.duplicate()
