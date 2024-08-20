@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://day7l83sv3sab"]
+[gd_scene load_steps=15 format=3 uid="uid://day7l83sv3sab"]
 
 [ext_resource type="Script" path="res://ui_scenes/test_level.gd" id="1_am0i7"]
 [ext_resource type="PackedScene" uid="uid://b4oy3gjuok4k8" path="res://player/player.tscn" id="2_bopjh"]
 [ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://player/powerup.tscn" id="2_ntqnr"]
 [ext_resource type="PackedScene" uid="uid://0fife4w74x3s" path="res://map_generation/resources/block_types/block_scenes/ice_floor.tscn" id="4_0a7o5"]
 [ext_resource type="PackedScene" uid="uid://bd86ksyrhkm34" path="res://map_generation/resources/block_types/block_scenes/launch_floor.tscn" id="5_4wnbd"]
+[ext_resource type="PackedScene" uid="uid://bt8hfpjth2pvd" path="res://map_generation/resources/block_types/block_scenes/wall_jump_wall.tscn" id="6_mjjii"]
+[ext_resource type="PackedScene" uid="uid://bcjcjcqtqrwm7" path="res://map_generation/resources/block_types/block_scenes/powerup_floor.tscn" id="7_0g2nd"]
+[ext_resource type="PackedScene" uid="uid://c5qdiq6gee24v" path="res://map_generation/resources/block_types/block_scenes/floor.tscn" id="8_wte7s"]
 
 [sub_resource type="Environment" id="Environment_36fah"]
 
@@ -94,7 +97,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353677, 7.59407, 11.4173)
 type = 3
 
 [node name="wall" parent="." instance=ExtResource("4_0a7o5")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 1.08378, -0.428276, 0.573595)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 1.08378, -1.61826, 0.573595)
 
 [node name="floor" parent="." instance=ExtResource("5_4wnbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.60122, 0.440181, 0.722315)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15115, -1.16832, 0.722315)
+
+[node name="wall2" parent="." instance=ExtResource("6_mjjii")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.31429, -1.65309, -8.96397)
+
+[node name="floor2" parent="." instance=ExtResource("7_0g2nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53318, -1.85816, -12.9688)
+
+[node name="floor3" parent="." instance=ExtResource("8_wte7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46668, -1.37658, -11.2414)
+
+[node name="floor4" parent="." instance=ExtResource("8_wte7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46668, -1.37658, -9.24441)
+
+[node name="floor5" parent="." instance=ExtResource("8_wte7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46668, -1.37658, -7.25376)

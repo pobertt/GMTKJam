@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcjcjcqtqrwm7"]
+[gd_scene load_steps=11 format=3 uid="uid://bcjcjcqtqrwm7"]
 
 [ext_resource type="ArrayMesh" uid="uid://bgonu1b0o7m2f" path="res://assets/models/tiles/floor_tile.res" id="1_w6sp0"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_scenes/powerup_floor.gd" id="1_x62vu"]
 [ext_resource type="Texture2D" uid="uid://bwrlkgousr7ma" path="res://assets/textures/colour_palette_resurrect.png" id="2_trnpm"]
 [ext_resource type="ArrayMesh" uid="uid://cd5q7twgdn70h" path="res://assets/models/tiles/powerup_stud.res" id="3_e0qba"]
+[ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://player/powerup.tscn" id="4_cbef6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04tm6"]
 shading_mode = 0
@@ -159,6 +161,7 @@ _data = {
 }
 
 [node name="floor" type="Node3D"]
+script = ExtResource("1_x62vu")
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_w6sp0")
@@ -179,3 +182,8 @@ libraries = {
 "": SubResource("AnimationLibrary_osnt7")
 }
 autoplay = "default"
+
+[node name="powerup" parent="." instance=ExtResource("4_cbef6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974189, 0)
+
+[connection signal="Collected" from="powerup" to="." method="_collected"]

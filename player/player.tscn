@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4oy3gjuok4k8"]
+[gd_scene load_steps=18 format=3 uid="uid://b4oy3gjuok4k8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_0qa20"]
 [ext_resource type="AudioStream" uid="uid://dyfrasw5cj2n0" path="res://SFX/individual step.wav" id="2_q2peh"]
@@ -193,12 +193,16 @@ _data = {
 "walk_sound": SubResource("Animation_b8n3r")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ckmys"]
+size = Vector3(1.35352, 1.1543, 1.50684)
+
 [node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82934, 0)
 collision_layer = 3
 script = ExtResource("1_0qa20")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_omppl")
 
 [node name="cam_controller" type="Node3D" parent="."]
@@ -249,6 +253,14 @@ visible = false
 [node name="powerup_pickup" parent="." instance=ExtResource("6_0w14c")]
 visible = false
 
+[node name="WallArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallArea"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_ckmys")
+
 [connection signal="timeout" from="small_powerup" to="." method="_on_small_powerup_timeout"]
+[connection signal="body_entered" from="WallArea" to="." method="_on_wall_jump_entered"]
+[connection signal="body_exited" from="WallArea" to="." method="_on_wall_jump_exited"]
 
 [editable path="powerup_pickup"]
