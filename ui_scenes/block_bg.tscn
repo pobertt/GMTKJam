@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://blhmwicyahsjm"]
+
+[ext_resource type="Shader" path="res://assets/shaders/block_bg.gdshader" id="1_8gt5t"]
+[ext_resource type="Texture2D" uid="uid://cvndgostepmue" path="res://assets/textures/ui/brick_button.png" id="2_4lwsw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkxjj"]
+shader = ExtResource("1_8gt5t")
+shader_parameter/uv_scale = Vector2(15, 10.41)
+shader_parameter/uv_offset = Vector2(0.18, 0.36)
+shader_parameter/uv_rotation = -0.35
+shader_parameter/colour_1 = Color(0.419608, 0.243137, 0.458824, 1)
+shader_parameter/colour_2 = Color(0.564706, 0.368627, 0.662745, 1)
+shader_parameter/block_tex = ExtResource("2_4lwsw")
+
+[node name="block_bg" type="ColorRect"]
+material = SubResource("ShaderMaterial_mkxjj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

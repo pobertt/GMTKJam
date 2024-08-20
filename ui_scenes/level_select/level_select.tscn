@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cj73synq83h8x"]
+[gd_scene load_steps=17 format=3 uid="uid://cj73synq83h8x"]
 
 [ext_resource type="Script" path="res://ui_scenes/level_select/level_select.gd" id="1_aus5p"]
 [ext_resource type="Resource" uid="uid://cr75ay56p44pv" path="res://map_generation/resources/levels/level_01.tres" id="2_3pngn"]
+[ext_resource type="PackedScene" uid="uid://blhmwicyahsjm" path="res://ui_scenes/block_bg.tscn" id="2_pcb6h"]
 [ext_resource type="Resource" uid="uid://dbxvufjxarp7n" path="res://map_generation/resources/levels/level_02.tres" id="3_t0aji"]
 [ext_resource type="Resource" uid="uid://dfb4rn6o1utmh" path="res://map_generation/resources/levels/level_03.tres" id="4_d8a83"]
 [ext_resource type="Resource" uid="uid://bkb232gsghqjk" path="res://map_generation/resources/levels/level_04.tres" id="5_3pm5l"]
@@ -15,6 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://cd3bd2gk727ml" path="res://assets/textures/ui/brick_button_hover.png" id="13_64t34"]
 [ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="14_f3xuq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmp4e"]
+bg_color = Color(0.419608, 0.243137, 0.458824, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.611765)
+shadow_size = 15
+shadow_offset = Vector2(3.325, 7.625)
+
 [node name="level_select" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -23,6 +34,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aus5p")
+
+[node name="block_bg" parent="." instance=ExtResource("2_pcb6h")]
+layout_mode = 1
 
 [node name="level_resource_preloader" type="ResourcePreloader" parent="."]
 resources = [PackedStringArray("level_01", "level_02", "level_03", "level_04", "level_05", "level_06", "level_07", "level_08", "level_09", "level_10"), [ExtResource("2_3pngn"), ExtResource("3_t0aji"), ExtResource("4_d8a83"), ExtResource("5_3pm5l"), ExtResource("6_cp8tx"), ExtResource("7_dlo8h"), ExtResource("8_cq4n4"), ExtResource("9_bmlij"), ExtResource("10_j7uve"), ExtResource("11_41hqd")]]
@@ -45,6 +59,7 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/CenterContainer"]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mmp4e")
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 

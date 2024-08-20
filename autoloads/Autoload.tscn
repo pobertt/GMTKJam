@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjdi8w7dymtam"]
+[gd_scene load_steps=3 format=3 uid="uid://cjdi8w7dymtam"]
 
 [ext_resource type="Script" path="res://autoloads/autoload.gd" id="1_en433"]
+[ext_resource type="AudioStream" uid="uid://chefsnsyaoj2w" path="res://SFX/2d song new.wav" id="2_ratoa"]
 
 [node name="Autoload" type="Node"]
 script = ExtResource("1_en433")
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ratoa")
+volume_db = -10.0
+autoplay = true

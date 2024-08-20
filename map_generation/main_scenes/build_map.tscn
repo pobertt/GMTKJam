@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ioe1r21achse"]
+[gd_scene load_steps=12 format=3 uid="uid://ioe1r21achse"]
 
 [ext_resource type="Script" path="res://map_generation/main_scenes/build_map.gd" id="1_hvjjc"]
 [ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_dke0s"]
@@ -7,21 +7,41 @@
 [ext_resource type="Resource" uid="uid://c44kyx526oryn" path="res://map_generation/resources/block_types/floor_finish.tres" id="4_bnjki"]
 [ext_resource type="Resource" uid="uid://0tfr00ibyd6c" path="res://map_generation/resources/block_types/floor_start.tres" id="5_ongy2"]
 [ext_resource type="Resource" uid="uid://b1ih3l17rdy8e" path="res://map_generation/resources/block_types/wall.tres" id="6_x25p5"]
+[ext_resource type="PackedScene" uid="uid://blhmwicyahsjm" path="res://ui_scenes/block_bg.tscn" id="8_4x7ut"]
 [ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="8_6skc2"]
-[ext_resource type="Resource" uid="uid://cs07iaavvgllj" path="res://map_generation/resources/block_types/ice_floor.tres" id="8_52wfh"]
-[ext_resource type="Resource" uid="uid://bypajv6xrsvfp" path="res://map_generation/resources/block_types/launch_floor.tres" id="9_8njvf"]
 [ext_resource type="Texture2D" uid="uid://xy7fh2aprkin" path="res://assets/textures/temp_blocks.png" id="11_5sq0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mee0k"]
 atlas = ExtResource("11_5sq0i")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(0, 96, 32, 32)
 
 [node name="BuildMap" type="Node2D"]
 script = ExtResource("1_hvjjc")
 level_info = ExtResource("2_jrse8")
-block_types = Array[ExtResource("2_dke0s")]([ExtResource("3_p5ejt"), ExtResource("4_bnjki"), ExtResource("5_ongy2"), ExtResource("6_x25p5"), ExtResource("8_52wfh"), ExtResource("9_8njvf")])
+block_types = Array[ExtResource("2_dke0s")]([ExtResource("3_p5ejt"), ExtResource("4_bnjki"), ExtResource("5_ongy2"), ExtResource("6_x25p5")])
 
-[node name="ui" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="block_bg" parent="CanvasLayer" instance=ExtResource("8_4x7ut")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="viewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="build_sprite" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/viewport"]
+visible = false
+texture = SubResource("AtlasTexture_mee0k")
+
+[node name="ui" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,35 +50,37 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ui"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ui"]
 layout_mode = 0
 offset_left = 906.0
 offset_top = 477.0
 offset_right = 1046.0
 offset_bottom = 573.0
 
-[node name="try_button" type="Button" parent="ui/VBoxContainer"]
+[node name="try_button" type="Button" parent="CanvasLayer/ui/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("8_6skc2")
+theme_override_font_sizes/font_size = 66
 text = "Try
 "
 
-[node name="reset_button" type="Button" parent="ui/VBoxContainer"]
+[node name="reset_button" type="Button" parent="CanvasLayer/ui/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("8_6skc2")
+theme_override_font_sizes/font_size = 66
 text = "Reload 
 "
 
-[node name="block_container" type="VBoxContainer" parent="ui"]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 138.0
-offset_right = 303.0
-offset_bottom = 481.0
+[node name="block_container" type="VBoxContainer" parent="CanvasLayer/ui"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 46.0
+offset_top = -171.0
+offset_right = 320.0
+offset_bottom = 172.0
+grow_vertical = 2
 
-[node name="build_sprite" type="Sprite2D" parent="."]
-visible = false
-texture = SubResource("AtlasTexture_mee0k")
-
-[connection signal="pressed" from="ui/VBoxContainer/try_button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="ui/VBoxContainer/reset_button" to="." method="_reload_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ui/VBoxContainer/try_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ui/VBoxContainer/reset_button" to="." method="_reload_button_pressed"]
