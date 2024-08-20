@@ -1,17 +1,23 @@
-[gd_resource type="Resource" script_class="LevelInfo" load_steps=6 format=3 uid="uid://cgcduqkdhi8vv"]
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=8 format=3 uid="uid://cgcduqkdhi8vv"]
 
 [ext_resource type="Script" path="res://map_generation/resources/block_types/block_level_info.gd" id="1_e8qdp"]
 [ext_resource type="Resource" uid="uid://ccl64xwkchk81" path="res://map_generation/resources/block_types/floor.tres" id="2_t2vrr"]
-[ext_resource type="PackedScene" uid="uid://bp710o831quox" path="res://map_generation/resources/levels/tilemap_scenes/level_02.tscn" id="3_yo06l"]
+[ext_resource type="Resource" uid="uid://bypajv6xrsvfp" path="res://map_generation/resources/block_types/launch_floor.tres" id="3_52qca"]
 [ext_resource type="Script" path="res://map_generation/resources/levels/level.gd" id="4_h1b1h"]
+[ext_resource type="PackedScene" uid="uid://cw8tjuci7sbne" path="res://map_generation/resources/levels/tilemap_scenes/level_05.tscn" id="4_ljtsx"]
 
 [sub_resource type="Resource" id="Resource_e7dav"]
 script = ExtResource("1_e8qdp")
 block_type = ExtResource("2_t2vrr")
-amount = 8
+amount = 4
+
+[sub_resource type="Resource" id="Resource_hh0k1"]
+script = ExtResource("1_e8qdp")
+block_type = ExtResource("3_52qca")
+amount = 1
 
 [resource]
 script = ExtResource("4_h1b1h")
 number = 5
-blocks = Array[ExtResource("1_e8qdp")]([SubResource("Resource_e7dav")])
-level_tilemap = ExtResource("3_yo06l")
+blocks = Array[ExtResource("1_e8qdp")]([SubResource("Resource_e7dav"), SubResource("Resource_hh0k1")])
+level_tilemap = ExtResource("4_ljtsx")

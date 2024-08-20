@@ -8,7 +8,7 @@ const SLIDE_SPEED = 25
 const DASH_SPEED = 25
 const JUMP_VELOCITY = 9
 const WALL_JUMP_VEL = 6
-const LAUNCH_PLAYER_VEL = 18
+const LAUNCH_PLAYER_VEL = 22
 const SENSITIVITY = 0.007
 
 # Bob variables.

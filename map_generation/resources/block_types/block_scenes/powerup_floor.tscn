@@ -187,3 +187,4 @@ autoplay = "default"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974189, 0)
 
 [connection signal="Collected" from="powerup" to="." method="_collected"]
+[connection signal="Respawn" from="powerup" to="." method="_respawn"]

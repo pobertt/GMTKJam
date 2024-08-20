@@ -1,6 +1,7 @@
 extends Area3D
 
 signal Collected
+signal Respawn
 
 enum Type {
 	dash,
@@ -58,10 +59,11 @@ func _on_body_entered(body: Node3D) -> void:
 		sfx.play()
 		
 	mesh.visible = false
-	#respawn_timer.start()
+	respawn_timer.start()
 	Collected.emit()
 
 
 func _on_respawn_timeout() -> void:
-	collectable = true
-	mesh.visible = true
+	Respawn.emit()
+	#collectable = true
+	#mesh.visible = true

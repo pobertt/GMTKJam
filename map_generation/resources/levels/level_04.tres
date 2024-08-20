@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_e7dav"]
 script = ExtResource("1_wuj4h")
 block_type = ExtResource("2_vebu8")
-amount = 8
+amount = 6
 
 [sub_resource type="Resource" id="Resource_litkg"]
 script = ExtResource("1_wuj4h")

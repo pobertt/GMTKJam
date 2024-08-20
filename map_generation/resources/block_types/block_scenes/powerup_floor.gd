@@ -13,4 +13,7 @@ func _process(delta):
 
 func _collected():
 	coin_mesh.hide()
-	pass
+
+	
+func _respawn():
+	coin_mesh.show()
