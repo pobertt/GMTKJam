@@ -99,4 +99,4 @@ common/max_physics_steps_per_frame=16
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.269531, 0.269531, 0.269531, 1)
+environment/defaults/default_clear_color=Color(0.419608, 0.243137, 0.458824, 1)
