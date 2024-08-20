@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockType" load_steps=3 format=3 uid="uid://b0mxsblb0ae1j"]
+
+[ext_resource type="PackedScene" uid="uid://cggdwbm7dbxc5" path="res://map_generation/resources/block_types/block_scenes/brittle_floor.tscn" id="1_7i1x2"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_g8ept"]
+
+[resource]
+script = ExtResource("2_g8ept")
+_name = "Brittle Floor"
+description = "Like a regular floor, except will break away after stepping onto it"
+packed_scene = ExtResource("1_7i1x2")

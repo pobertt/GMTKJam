@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockType" load_steps=3 format=3 uid="uid://djxsn47hskwts"]
+
+[ext_resource type="PackedScene" uid="uid://bt8hfpjth2pvd" path="res://map_generation/resources/block_types/block_scenes/wall_jump_wall.tscn" id="1_0bvku"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_hxmkr"]
+
+[resource]
+script = ExtResource("2_hxmkr")
+_name = "Wall Jump Wall"
+description = "A wall to jump off of"
+packed_scene = ExtResource("1_0bvku")

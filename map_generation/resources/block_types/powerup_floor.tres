@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockType" load_steps=3 format=3 uid="uid://c2c8yq0b04f03"]
+
+[ext_resource type="PackedScene" uid="uid://bcjcjcqtqrwm7" path="res://map_generation/resources/block_types/block_scenes/powerup_floor.tscn" id="1_oovqk"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_ofhwi"]
+
+[resource]
+script = ExtResource("2_ofhwi")
+_name = "Powerup Floor"
+description = "Floor with a little treat"
+packed_scene = ExtResource("1_oovqk")
