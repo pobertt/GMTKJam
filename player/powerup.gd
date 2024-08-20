@@ -36,7 +36,7 @@ func _ready() -> void:
 		label.text = "WIN"
 		mat.set_albedo(Color(1,1,0,1))
 			
-	mesh.set_surface_override_material(0,mat)
+	#mesh.set_surface_override_material(0,mat)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

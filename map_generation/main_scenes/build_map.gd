@@ -48,7 +48,7 @@ func set_up_level() -> void:
 		tile_map = level_info.level_tilemap.instantiate()
 		viewport.add_child(tile_map)
 		viewport.move_child(tile_map, 0)
-		tile_map.global_position -= Vector2(13,0)
+		tile_map.global_position -= Vector2(15,-20)
 
 func activate_block_tool(type: BlockType):
 	#print(type._name)

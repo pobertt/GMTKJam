@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="LevelInfo" load_steps=6 format=3 uid="uid://dfb4rn6o1utmh"]
 
 [ext_resource type="Script" path="res://map_generation/resources/block_types/block_level_info.gd" id="1_xs6ec"]
-[ext_resource type="Resource" uid="uid://djxsn47hskwts" path="res://map_generation/resources/block_types/wall_jump_wall.tres" id="2_3qlhk"]
+[ext_resource type="Resource" uid="uid://b0mxsblb0ae1j" path="res://map_generation/resources/block_types/brittle_floor.tres" id="2_jpcyp"]
 [ext_resource type="PackedScene" uid="uid://b2nw62jo8hqnm" path="res://map_generation/resources/levels/tilemap_scenes/level_03.tscn" id="3_xvo76"]
 [ext_resource type="Script" path="res://map_generation/resources/levels/level.gd" id="4_7fnjg"]
 
 [sub_resource type="Resource" id="Resource_e7dav"]
 script = ExtResource("1_xs6ec")
-block_type = ExtResource("2_3qlhk")
+block_type = ExtResource("2_jpcyp")
 amount = 5
 
 [resource]

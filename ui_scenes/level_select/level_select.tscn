@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cj73synq83h8x"]
+[gd_scene load_steps=21 format=3 uid="uid://cj73synq83h8x"]
 
 [ext_resource type="Script" path="res://ui_scenes/level_select/level_select.gd" id="1_aus5p"]
 [ext_resource type="Resource" uid="uid://cr75ay56p44pv" path="res://map_generation/resources/levels/level_01.tres" id="2_3pngn"]
@@ -14,7 +14,11 @@
 [ext_resource type="Resource" uid="uid://df1ivwh3edokk" path="res://map_generation/resources/levels/level_10.tres" id="11_41hqd"]
 [ext_resource type="Texture2D" uid="uid://cvndgostepmue" path="res://assets/textures/ui/brick_button.png" id="12_6ccs5"]
 [ext_resource type="Texture2D" uid="uid://cd3bd2gk727ml" path="res://assets/textures/ui/brick_button_hover.png" id="13_64t34"]
+[ext_resource type="Resource" uid="uid://bv4gktfjphnw5" path="res://map_generation/resources/levels/level_11.tres" id="13_gdgkn"]
+[ext_resource type="Resource" uid="uid://cemwcpjjtjlsp" path="res://map_generation/resources/levels/level_12.tres" id="14_3oak3"]
 [ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="14_f3xuq"]
+[ext_resource type="Resource" uid="uid://dcl7va4vp6y8" path="res://map_generation/resources/levels/level_13.tres" id="15_sfmr7"]
+[ext_resource type="Resource" uid="uid://crjh33ir3a717" path="res://map_generation/resources/levels/level_14.tres" id="16_ss00t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmp4e"]
 bg_color = Color(0.419608, 0.243137, 0.458824, 1)
@@ -39,7 +43,7 @@ script = ExtResource("1_aus5p")
 layout_mode = 1
 
 [node name="level_resource_preloader" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("level_01", "level_02", "level_03", "level_04", "level_05", "level_06", "level_07", "level_08", "level_09", "level_10"), [ExtResource("2_3pngn"), ExtResource("3_t0aji"), ExtResource("4_d8a83"), ExtResource("5_3pm5l"), ExtResource("6_cp8tx"), ExtResource("7_dlo8h"), ExtResource("8_cq4n4"), ExtResource("9_bmlij"), ExtResource("10_j7uve"), ExtResource("11_41hqd")]]
+resources = [PackedStringArray("level_01", "level_02", "level_03", "level_04", "level_05", "level_06", "level_07", "level_08", "level_09", "level_10", "level_11", "level_12", "level_13", "level_14"), [ExtResource("2_3pngn"), ExtResource("3_t0aji"), ExtResource("4_d8a83"), ExtResource("5_3pm5l"), ExtResource("6_cp8tx"), ExtResource("7_dlo8h"), ExtResource("8_cq4n4"), ExtResource("9_bmlij"), ExtResource("10_j7uve"), ExtResource("11_41hqd"), ExtResource("13_gdgkn"), ExtResource("14_3oak3"), ExtResource("15_sfmr7"), ExtResource("16_ss00t")]]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
