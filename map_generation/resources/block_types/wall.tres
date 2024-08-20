@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("2_qxuyq")
 _name = "Wall"
+description = "A wall to block movement"
 packed_scene = ExtResource("1_xmxob")

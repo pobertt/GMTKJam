@@ -9,10 +9,32 @@ atlas = ExtResource("2_31mh3")
 region = Rect2(96, 0, 32, 32)
 
 [node name="BlockButton" type="Button"]
+custom_minimum_size = Vector2(228.985, 153.6)
 theme = ExtResource("1_ha5gc")
-text = "x2"
 icon = SubResource("AtlasTexture_4cyni")
 alignment = 0
+vertical_icon_alignment = 0
 script = ExtResource("3_t6qp7")
+
+[node name="number_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 4.0
+offset_right = 89.0
+offset_bottom = 44.0
+theme = ExtResource("1_ha5gc")
+theme_override_font_sizes/font_size = 51
+text = "x2"
+
+[node name="description_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 40.0
+offset_right = 224.0
+offset_bottom = 146.0
+theme = ExtResource("1_ha5gc")
+theme_override_font_sizes/font_size = 23
+text = "a regular floor block to jump on"
+autowrap_mode = 2
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

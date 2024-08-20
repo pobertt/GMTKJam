@@ -30,6 +30,7 @@ const block_sprite = preload("res://map_generation/2d_sprites/TestSpritetscn.tsc
 
 
 func _ready() -> void:
+	block_list.clear()
 	level_info = Autoload.active_level
 	set_up_level()
 
@@ -159,7 +160,10 @@ func get_block_at_coord(coord: Vector2i) -> BlockBuildInfo:
 func _on_button_pressed():
 	generate_map()
 	var level = generated_level_scene.instantiate() as GeneratedLevel # passes map info directly
+	level.block_list.clear()
 	level.block_list = block_list
+	SceneTransition.fake_wipe()
+	await get_tree().create_timer(0.4).timeout
 	get_tree().root.add_child(level)
 	queue_free()
 	pass

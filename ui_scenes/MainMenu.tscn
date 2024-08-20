@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://7pcw7nja6pf2"]
+[gd_scene load_steps=5 format=3 uid="uid://7pcw7nja6pf2"]
 
 [ext_resource type="Script" path="res://ui_scenes/main_menu.gd" id="1_la8gf"]
 [ext_resource type="AudioStream" uid="uid://chefsnsyaoj2w" path="res://SFX/2d song new.wav" id="2_vei2r"]
+[ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="2_xr7py"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_plwm7"]
-font_size = 64
+font_size = 124
+outline_size = 20
+outline_color = Color(0.585938, 0.585938, 0.585938, 1)
+shadow_size = 31
+shadow_color = Color(1, 1, 1, 0.290196)
+shadow_offset = Vector2(8.925, 7.61)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -22,35 +28,40 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -10.0
-offset_right = 9.0
-offset_bottom = 56.0
+offset_left = -517.0
+offset_top = -110.0
+offset_right = -415.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_xr7py")
 text = "START
 "
+alignment = 0
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_xr7py")
 text = "QUIT
 "
+alignment = 0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -203.0
-offset_top = 120.0
-offset_right = 203.0
-offset_bottom = 208.0
+offset_left = -519.0
+offset_top = 103.0
+offset_right = 273.0
+offset_bottom = 191.0
 grow_horizontal = 2
 rotation = 0.000908585
+theme = ExtResource("2_xr7py")
 text = "block jumper"
 label_settings = SubResource("LabelSettings_plwm7")
 

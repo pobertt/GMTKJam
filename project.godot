@@ -94,3 +94,9 @@ pause={
 common/physics_ticks_per_second=128
 common/max_physics_steps_per_frame=16
 3d/default_gravity=25.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.269531, 0.269531, 0.269531, 1)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cojvgu3wuyscn"]
+[gd_scene load_steps=3 format=3 uid="uid://cojvgu3wuyscn"]
 
 [ext_resource type="Script" path="res://ui_scenes/pause_menu.gd" id="1_mxvus"]
+[ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="2_qsl4e"]
 
 [node name="pause_menu" type="Control"]
 process_mode = 3
@@ -29,11 +30,19 @@ scale = Vector2(2, 2)
 
 [node name="resume" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "RESUME"
+theme = ExtResource("2_qsl4e")
+text = "Resume"
+
+[node name="retry_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qsl4e")
+text = "Retry"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "QUIT"
+theme = ExtResource("2_qsl4e")
+text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/retry_button" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
