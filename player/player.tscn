@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4oy3gjuok4k8"]
+[gd_scene load_steps=19 format=3 uid="uid://b4oy3gjuok4k8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_0qa20"]
 [ext_resource type="AudioStream" uid="uid://dyfrasw5cj2n0" path="res://SFX/individual step.wav" id="2_q2peh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c3iic2i1qaa18" path="res://ui_scenes/powerup_pickup.tscn" id="6_0w14c"]
 [ext_resource type="PackedScene" uid="uid://jf2276nkej2x" path="res://ui_scenes/win_screen.tscn" id="6_2whh8"]
 [ext_resource type="PackedScene" uid="uid://c8hdd8y8huaew" path="res://ui_scenes/restart_screen.tscn" id="7_vbg3a"]
+[ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="9_8aivl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omppl"]
 height = 4.0
@@ -252,6 +253,14 @@ visible = false
 
 [node name="powerup_pickup" parent="." instance=ExtResource("6_0w14c")]
 visible = false
+
+[node name="Label" parent="powerup_pickup" index="0"]
+offset_left = -206.5
+offset_top = 40.0
+offset_right = 206.5
+offset_bottom = 73.0
+theme = ExtResource("9_8aivl")
+theme_override_font_sizes/font_size = 41
 
 [node name="WallArea" type="Area3D" parent="."]
 

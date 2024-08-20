@@ -195,7 +195,7 @@ func _gain_dash(active):
 	if active == true:
 		print("dash active")
 		dash_active = active
-	_powerup_ui("DASH powerup")
+	_powerup_ui("Press SHIFT to Dash")
 
 func _gain_jumps(active):
 	if active == true:

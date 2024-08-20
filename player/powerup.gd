@@ -24,7 +24,7 @@ var collectable = true
 func _ready() -> void:
 	var mat = StandardMaterial3D.new()
 	if type == Type.dash:
-		label.text = "Dash"
+		#label.text = "Dash"
 		mat.set_albedo(Color(0,1,0,1))
 	elif type == Type.double_jump:
 		label.text = "Double Jump"

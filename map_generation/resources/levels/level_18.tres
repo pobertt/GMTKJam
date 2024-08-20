@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=6 format=3 uid="uid://c5cf40kbgnt4y"]
+
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_level_info.gd" id="1_v26ha"]
+[ext_resource type="Resource" uid="uid://cs07iaavvgllj" path="res://map_generation/resources/block_types/ice_floor.tres" id="2_ul30m"]
+[ext_resource type="PackedScene" uid="uid://b0w4n5h5ebcd1" path="res://map_generation/resources/levels/tilemap_scenes/level_18.tscn" id="3_am5qr"]
+[ext_resource type="Script" path="res://map_generation/resources/levels/level.gd" id="6_12maj"]
+
+[sub_resource type="Resource" id="Resource_uik0m"]
+script = ExtResource("1_v26ha")
+block_type = ExtResource("2_ul30m")
+amount = 12
+
+[resource]
+script = ExtResource("6_12maj")
+number = 18
+blocks = Array[ExtResource("1_v26ha")]([SubResource("Resource_uik0m")])
+level_tilemap = ExtResource("3_am5qr")
