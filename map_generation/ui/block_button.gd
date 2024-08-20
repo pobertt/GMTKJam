@@ -34,6 +34,6 @@ func _on_pressed() -> void:
 		amount -= 1
 		spawn_block.emit(block_type)
 		
-		text = str("x", amount)
+		number_label.text = str("x", amount)
 	else:
 		print("not enough blocks")

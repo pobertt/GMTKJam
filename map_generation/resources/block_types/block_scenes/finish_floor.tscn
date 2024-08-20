@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb2lj48hh5dt"]
+[gd_scene load_steps=7 format=3 uid="uid://bb2lj48hh5dt"]
 
 [ext_resource type="ArrayMesh" uid="uid://bspvj5s636vss" path="res://assets/models/tiles/finish_tile.res" id="1_lf4kb"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_scenes/finish_floor.gd" id="1_qwwnk"]
 [ext_resource type="Texture2D" uid="uid://bwrlkgousr7ma" path="res://assets/textures/colour_palette_resurrect.png" id="2_m8rdx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rt0rk"]
@@ -10,7 +11,11 @@ albedo_texture = ExtResource("2_m8rdx")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ppsai"]
 size = Vector3(2, 0.1, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tspcm"]
+size = Vector3(1.28906, 0.707153, 1.3103)
+
 [node name="finish_floor" type="Node3D"]
+script = ExtResource("1_qwwnk")
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_lf4kb")
@@ -20,3 +25,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rt0rk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_ppsai")
+
+[node name="finish_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="finish_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.146423, 0)
+shape = SubResource("BoxShape3D_tspcm")
+
+[connection signal="body_entered" from="finish_area" to="." method="_on_finish_area_body_entered"]

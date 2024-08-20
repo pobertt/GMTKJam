@@ -1,11 +1,9 @@
 extends Control
 
 func _on_next_level_pressed() -> void:
-	print("pressed")
-	self.hide()
-	get_tree().change_scene_to_file("res://ui_scenes/test_level.tscn")
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	SceneTransition.wipe_to_scene("res://ui_scenes/level_select/level_select.tscn")
+	Autoload.levels_complete += 1
+
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
