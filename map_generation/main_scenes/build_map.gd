@@ -19,10 +19,11 @@ var tile_map: TileMapLayer
 
 # onready vars
 @onready var simultaneous_scene = preload("res://map_generation/main_scenes/GeneratedLevel.tscn").instantiate()
-@onready var block_container: VBoxContainer = $ui/block_container
-@onready var build_sprite: Sprite2D = $build_sprite
-@onready var try_button: Button = $ui/VBoxContainer/try_button
-@onready var reset_button: Button = $ui/VBoxContainer/reset_button
+@onready var block_container: VBoxContainer = $CanvasLayer/ui/block_container
+@onready var build_sprite: Sprite2D = $CanvasLayer/SubViewportContainer/viewport/build_sprite
+@onready var try_button: Button = $CanvasLayer/ui/VBoxContainer/try_button
+@onready var reset_button: Button = $CanvasLayer/ui/VBoxContainer/reset_button
+@onready var viewport: SubViewport = $CanvasLayer/SubViewportContainer/viewport
 
 const generated_level_scene = preload("res://map_generation/main_scenes/GeneratedLevel.tscn")
 const block_button = preload("res://map_generation/ui/block_button.tscn")
@@ -45,8 +46,8 @@ func set_up_level() -> void:
 			block_container.add_child(button)
 		
 		tile_map = level_info.level_tilemap.instantiate()
-		add_child(tile_map)
-		move_child(tile_map, 0)
+		viewport.add_child(tile_map)
+		viewport.move_child(tile_map, 0)
 
 func activate_block_tool(type: BlockType):
 	#print(type._name)

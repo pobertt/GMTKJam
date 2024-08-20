@@ -9,7 +9,9 @@ atlas = ExtResource("2_31mh3")
 region = Rect2(96, 0, 32, 32)
 
 [node name="BlockButton" type="Button"]
-custom_minimum_size = Vector2(228.985, 153.6)
+custom_minimum_size = Vector2(228.985, 109.81)
+offset_right = 229.0
+offset_bottom = 110.0
 theme = ExtResource("1_ha5gc")
 icon = SubResource("AtlasTexture_4cyni")
 alignment = 0
@@ -31,7 +33,7 @@ layout_mode = 0
 offset_left = 42.0
 offset_top = 40.0
 offset_right = 224.0
-offset_bottom = 146.0
+offset_bottom = 89.0
 theme = ExtResource("1_ha5gc")
 theme_override_font_sizes/font_size = 23
 text = "a regular floor block to jump on"

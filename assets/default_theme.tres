@@ -1,7 +1,39 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cgprh2heefr62"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cgprh2heefr62"]
 
 [ext_resource type="FontFile" uid="uid://ux4a48csf8xa" path="res://assets/fonts/FORCED SQUARE.ttf" id="1_4uugu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo5bg"]
+bg_color = Color(0.682353, 0.137255, 0.203922, 1)
+border_width_left = 3
+border_color = Color(0.984314, 0.419608, 0.113725, 1)
+expand_margin_left = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07vqf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btivt"]
+bg_color = Color(0.3477, 0.358815, 0.57, 1)
+border_width_left = 3
+border_color = Color(0.560784, 0.827451, 1, 1)
+expand_margin_left = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob0n2"]
+bg_color = Color(0.282353, 0.290196, 0.466667, 1)
+border_width_left = 3
+border_color = Color(0.301961, 0.396078, 0.705882, 1)
+expand_margin_left = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hr35x"]
+bg_color = Color(0.213379, 0.219592, 0.359375, 1)
+border_width_left = 3
+border_color = Color(0.301961, 0.396078, 0.705882, 1)
+expand_margin_left = 2.0
 
 [resource]
 default_font = ExtResource("1_4uugu")
 default_font_size = 25
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_bo5bg")
+Button/styles/focus = SubResource("StyleBoxEmpty_07vqf")
+Button/styles/hover = SubResource("StyleBoxFlat_btivt")
+Button/styles/normal = SubResource("StyleBoxFlat_ob0n2")
+Button/styles/pressed = SubResource("StyleBoxFlat_hr35x")

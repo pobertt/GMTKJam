@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://7pcw7nja6pf2"]
 
 [ext_resource type="Script" path="res://ui_scenes/main_menu.gd" id="1_la8gf"]
-[ext_resource type="AudioStream" uid="uid://chefsnsyaoj2w" path="res://SFX/2d song new.wav" id="2_vei2r"]
+[ext_resource type="PackedScene" uid="uid://blhmwicyahsjm" path="res://ui_scenes/block_bg.tscn" id="2_t2y6m"]
 [ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="2_xr7py"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_plwm7"]
 font_size = 124
 outline_size = 20
-outline_color = Color(0.585938, 0.585938, 0.585938, 1)
+outline_color = Color(0.301961, 0.607843, 0.901961, 1)
 shadow_size = 31
-shadow_color = Color(1, 1, 1, 0.290196)
+shadow_color = Color(0.301961, 0.607843, 0.901961, 0.505882)
 shadow_offset = Vector2(8.925, 7.61)
 
 [node name="Control" type="Control"]
@@ -20,6 +20,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_la8gf")
+
+[node name="block_bg" parent="." instance=ExtResource("2_t2y6m")]
+layout_mode = 1
+
+[node name="toggle_music" type="Button" parent="."]
+layout_mode = 2
+offset_left = 59.0
+offset_top = 582.0
+offset_right = 152.0
+offset_bottom = 604.0
+theme = ExtResource("2_xr7py")
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Toggle Music"
+alignment = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -39,14 +54,14 @@ scale = Vector2(2, 2)
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_xr7py")
-text = "START
+text = "Start
 "
 alignment = 0
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_xr7py")
-text = "QUIT
+text = "Quit
 "
 alignment = 0
 
@@ -65,9 +80,6 @@ theme = ExtResource("2_xr7py")
 text = "block jumper"
 label_settings = SubResource("LabelSettings_plwm7")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_vei2r")
-volume_db = -10.0
-
+[connection signal="toggled" from="toggle_music" to="." method="_on_toggle_music_toggled"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
