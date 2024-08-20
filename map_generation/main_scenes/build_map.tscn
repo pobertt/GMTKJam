@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ioe1r21achse"]
+[gd_scene load_steps=17 format=3 uid="uid://ioe1r21achse"]
 
 [ext_resource type="Script" path="res://map_generation/main_scenes/build_map.gd" id="1_hvjjc"]
 [ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_dke0s"]
@@ -9,20 +9,35 @@
 [ext_resource type="Resource" uid="uid://b1ih3l17rdy8e" path="res://map_generation/resources/block_types/wall.tres" id="6_x25p5"]
 [ext_resource type="PackedScene" uid="uid://blhmwicyahsjm" path="res://ui_scenes/block_bg.tscn" id="8_4x7ut"]
 [ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="8_6skc2"]
+[ext_resource type="Resource" uid="uid://cs07iaavvgllj" path="res://map_generation/resources/block_types/ice_floor.tres" id="8_k1737"]
+[ext_resource type="Resource" uid="uid://bypajv6xrsvfp" path="res://map_generation/resources/block_types/launch_floor.tres" id="9_6qodc"]
+[ext_resource type="Resource" uid="uid://c2c8yq0b04f03" path="res://map_generation/resources/block_types/powerup_floor.tres" id="10_opmbs"]
+[ext_resource type="Resource" uid="uid://djxsn47hskwts" path="res://map_generation/resources/block_types/wall_jump_wall.tres" id="11_4e8m1"]
 [ext_resource type="Texture2D" uid="uid://xy7fh2aprkin" path="res://assets/textures/temp_blocks.png" id="11_5sq0i"]
+[ext_resource type="Resource" uid="uid://b0mxsblb0ae1j" path="res://map_generation/resources/block_types/brittle_floor.tres" id="12_srspb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mee0k"]
 atlas = ExtResource("11_5sq0i")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(32, 32, 32, 32)
 
 [node name="BuildMap" type="Node2D"]
 script = ExtResource("1_hvjjc")
 level_info = ExtResource("2_jrse8")
-block_types = Array[ExtResource("2_dke0s")]([ExtResource("3_p5ejt"), ExtResource("4_bnjki"), ExtResource("5_ongy2"), ExtResource("6_x25p5")])
+block_types = Array[ExtResource("2_dke0s")]([ExtResource("3_p5ejt"), ExtResource("4_bnjki"), ExtResource("5_ongy2"), ExtResource("6_x25p5"), ExtResource("8_k1737"), ExtResource("9_6qodc"), ExtResource("10_opmbs"), ExtResource("11_4e8m1"), ExtResource("12_srspb")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="block_bg" parent="CanvasLayer" instance=ExtResource("8_4x7ut")]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 304.0
+offset_right = -304.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.419608, 0.243137, 0.458824, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -76,11 +91,12 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 46.0
-offset_top = -171.0
-offset_right = 320.0
-offset_bottom = 172.0
+offset_left = 32.0
+offset_top = -212.0
+offset_right = 289.0
+offset_bottom = 213.0
 grow_vertical = 2
+alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/ui/VBoxContainer/try_button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ui/VBoxContainer/reset_button" to="." method="_reload_button_pressed"]

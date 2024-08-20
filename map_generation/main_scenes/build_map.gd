@@ -7,7 +7,7 @@ var block_list : Array[BlockBuildInfo]
 @export var block_types: Array[BlockType]
 
 # tool vars
-enum Tools{EMPTY, FLOOR, WALL, ICEFLOOR}
+enum Tools{EMPTY, FLOOR, WALL, ICEFLOOR, BRITTLEFLOOR, LAUNCHFLOOR, POWERUPFLOOR, WALLJUMP}
 var active_tool: Tools
 var is_active_tool := false
 
@@ -48,6 +48,7 @@ func set_up_level() -> void:
 		tile_map = level_info.level_tilemap.instantiate()
 		viewport.add_child(tile_map)
 		viewport.move_child(tile_map, 0)
+		tile_map.global_position -= Vector2(13,0)
 
 func activate_block_tool(type: BlockType):
 	#print(type._name)
@@ -69,6 +70,18 @@ func activate_block_tool(type: BlockType):
 			"Ice Floor":
 				active_tool = Tools.ICEFLOOR
 				build_sprite.texture.region = Rect2(Vector2(0,96), Vector2(32,32))
+			"Brittle Floor":
+				active_tool = Tools.BRITTLEFLOOR
+				build_sprite.texture.region = Rect2(Vector2(0,64), Vector2(32,32))
+			"Launch Floor":
+				active_tool = Tools.LAUNCHFLOOR
+				build_sprite.texture.region = Rect2(Vector2(96,32), Vector2(32,32))
+			"Powerup Floor":
+				active_tool = Tools.POWERUPFLOOR
+				build_sprite.texture.region = Rect2(Vector2(0,32), Vector2(32,32))
+			"Wall Jump Wall":
+				active_tool = Tools.WALLJUMP
+				build_sprite.texture.region = Rect2(Vector2(32,32), Vector2(32,32))
 		
 		build_sprite.show()
 		is_active_tool = true
@@ -91,6 +104,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			build_sprite.modulate = Color.INDIAN_RED
 		
+		
 		if Input.is_action_just_pressed("MovePiece"):
 			if is_valid_tile_pos(tile_pos):
 				match active_tool:
@@ -98,6 +112,16 @@ func _physics_process(delta: float) -> void:
 						tile_map.set_cell(tile_pos, 0, Vector2i(0,0))
 					Tools.WALL:
 						tile_map.set_cell(tile_pos, 0, Vector2i(1,0))
+					Tools.ICEFLOOR:
+						tile_map.set_cell(tile_pos, 0, Vector2i(0,3))
+					Tools.BRITTLEFLOOR:
+						tile_map.set_cell(tile_pos, 0, Vector2i(0,2))
+					Tools.LAUNCHFLOOR:
+						tile_map.set_cell(tile_pos, 0, Vector2i(3,1))
+					Tools.POWERUPFLOOR:
+						tile_map.set_cell(tile_pos, 0, Vector2i(0,1))
+					Tools.WALLJUMP:
+						tile_map.set_cell(tile_pos, 0, Vector2i(1,1))
 				
 				build_sprite.hide()
 				active_tool = Tools.EMPTY
@@ -147,13 +171,23 @@ func get_block_at_coord(coord: Vector2i) -> BlockBuildInfo:
 	
 	match atlas_coords: # set the block type based off tilemap atlas coords
 		Vector2i(0,0):
-			block_data.block_type = block_types[0]
+			block_data.block_type = block_types[0] # floor
 		Vector2i(1,0):
-			block_data.block_type = block_types[3]
+			block_data.block_type = block_types[3] # wall
 		Vector2i(2,0):
-			block_data.block_type = block_types[2]
+			block_data.block_type = block_types[2] # start 
 		Vector2i(3,0):
-			block_data.block_type = block_types[1]
+			block_data.block_type = block_types[1] # finish
+		Vector2i(0,1):
+			block_data.block_type = block_types[6] # powerup
+		Vector2i(1,1):
+			block_data.block_type = block_types[7] # wall jump
+		Vector2i(3,1):
+			block_data.block_type = block_types[5] # jump pad
+		Vector2i(0,2):
+			block_data.block_type = block_types[8] # brittle
+		Vector2i(0,3):
+			block_data.block_type = block_types[4] # ice
 	
 	if block_data.block_type:
 		return block_data

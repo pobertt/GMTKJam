@@ -26,6 +26,17 @@ func _ready() -> void:
 			icon.region = Rect2(Vector2(64,0), tex_size)
 		"Finish Floor":
 			icon.region = Rect2(Vector2(96,0), tex_size)
+		"Brittle Floor":
+			icon.region = Rect2(Vector2(0,64), tex_size)
+		"Ice Floor":
+			icon.region = Rect2(Vector2(0,96), tex_size)
+		"Launch Floor":
+			icon.region = Rect2(Vector2(96,32), tex_size)
+		"Powerup Floor":
+			icon.region = Rect2(Vector2(0,32), tex_size)
+		"Wall Jump Wall":
+			icon.region = Rect2(Vector2(32,32), tex_size)
+		
 	
 	#tooltip_text = block_type.description
 
