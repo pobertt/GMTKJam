@@ -2,11 +2,13 @@ extends CharacterBody3D
 
 var speed
 const WALK_SPEED = 8
+const ICE_SPEED = 1.5
 const SPRINT_SPEED = 16
 const SLIDE_SPEED = 25
 const DASH_SPEED = 50
 const JUMP_VELOCITY = 15
 const WALL_JUMP_VEL = 12
+const LAUNCH_PLAYER_VEL = 30
 const SENSITIVITY = 0.007
 
 # Bob variables.
@@ -29,13 +31,17 @@ var crouching : bool = false
 var sprinting : bool = false
 var sliding : bool = false
 var walking : bool = false
+var ice : bool = false
 
 var gravity_vec = Vector3( )
+var ice_vec = Vector3( )
 
-const FLOOR = 0
-const WALL = 1
-const AIR = 2
-var current_state := AIR
+enum state {FLOOR, WALL, AIR, ICE}
+
+#const FLOOR = 0
+#const WALL = 1
+#const AIR = 2#const ICE = 3
+var current_state := state.AIR
 const WALL_FRICTION = 0
 const testvar = 0
 
@@ -69,16 +75,15 @@ func _physics_process(delta):
 	else:
 		jump_count = 0
 		
-	if global_position.y < -20:
-		_restart()	
 	_check_sprint()
 	
 	#if sprinting == true and is_on_floor():
 		#anim.play("run_sound")
 	#elif walking == true and is_on_floor():
 		#anim.play("walk_sound")
-
-	if is_on_floor():
+	if current_state == state.ICE:
+			velocity = ice_vec * ICE_SPEED
+	elif is_on_floor():
 		if 	_get_direction():
 			velocity.x = _get_direction().x * speed
 			velocity.z = _get_direction().z * speed
@@ -113,7 +118,7 @@ func _physics_process(delta):
 	move_and_slide()
 	_update_state()
 	
-	if current_state == WALL:
+	if current_state == state.WALL:
 		jump_count = 0
 		velocity.y *= WALL_FRICTION
 	
@@ -125,11 +130,14 @@ func _get_direction() -> Vector3:
 	
 func _update_state():
 	if is_on_wall_only():
-		current_state = WALL
+		current_state = state.WALL
 	elif is_on_floor():
-		current_state = FLOOR
+		if (ice == false):
+			current_state = state.FLOOR
+		else:
+			current_state = state.ICE
 	else:
-		current_state = AIR
+		current_state = state.AIR
 	
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
@@ -147,12 +155,12 @@ func _check_jump():
 		if jump_count < jumps:
 			jump_count += 1
 			$player_audios/jump.play()
-			if current_state == FLOOR:
+			if current_state == state.FLOOR || current_state == state.ICE:
 				velocity.y = JUMP_VELOCITY
-			elif current_state == WALL:
+			elif current_state == state.WALL:
 				velocity = get_wall_normal() * WALL_JUMP_VEL#((camera.global_basis * Vector3.FORWARD) * WALL_JUMP_VEL)
 				velocity.y += JUMP_VELOCITY 
-			elif current_state == AIR:
+			elif current_state == state.AIR:
 				velocity.y = JUMP_VELOCITY
 				double_jump_active = false
 				print("double jump disabled")
@@ -219,6 +227,20 @@ func _check_dash():
 			velocity += dash_vector
 			print("dash used")
 			dash_active = false
+			
+# Custom Tile Behavior
+func _player_on_ice():
+	ice = true;
+	ice_vec = Vector3(velocity.x, 0, velocity.z)
+	print(ice_vec)
+
+func _player_off_ice():
+	ice = false
+	print("OFFOFFOFF")
+	
+func _launch_player():
+	velocity = Vector3(velocity.x,LAUNCH_PLAYER_VEL,velocity.z)
+
 			
 func _win():
 	$powerup_pickup.hide()

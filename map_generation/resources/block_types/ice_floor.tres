@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockType" load_steps=3 format=3 uid="uid://cs07iaavvgllj"]
+
+[ext_resource type="PackedScene" uid="uid://0fife4w74x3s" path="res://map_generation/resources/block_types/block_scenes/ice_floor.tscn" id="1_ao1d5"]
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_type.gd" id="2_ix7tb"]
+
+[resource]
+script = ExtResource("2_ix7tb")
+_name = "Ice Floor"
+description = "Frictionless Floor will lock player velocity while grounded"
+packed_scene = ExtResource("1_ao1d5")

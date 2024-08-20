@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://day7l83sv3sab"]
+[gd_scene load_steps=12 format=3 uid="uid://day7l83sv3sab"]
 
 [ext_resource type="Script" path="res://ui_scenes/test_level.gd" id="1_am0i7"]
 [ext_resource type="PackedScene" uid="uid://b4oy3gjuok4k8" path="res://player/player.tscn" id="2_bopjh"]
 [ext_resource type="PackedScene" uid="uid://ygpobru5c8pn" path="res://player/powerup.tscn" id="2_ntqnr"]
+[ext_resource type="PackedScene" uid="uid://0fife4w74x3s" path="res://map_generation/resources/block_types/block_scenes/ice_floor.tscn" id="4_0a7o5"]
+[ext_resource type="PackedScene" uid="uid://bd86ksyrhkm34" path="res://map_generation/resources/block_types/block_scenes/launch_floor.tscn" id="5_4wnbd"]
 
 [sub_resource type="Environment" id="Environment_36fah"]
 
@@ -90,3 +92,9 @@ type = 2
 [node name="powerup4" parent="." instance=ExtResource("2_ntqnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353677, 7.59407, 11.4173)
 type = 3
+
+[node name="wall" parent="." instance=ExtResource("4_0a7o5")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 1.08378, -0.428276, 0.573595)
+
+[node name="floor" parent="." instance=ExtResource("5_4wnbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.60122, 0.440181, 0.722315)
