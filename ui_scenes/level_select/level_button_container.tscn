@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6805wephbm3r"]
+
+[ext_resource type="Script" path="res://ui_scenes/level_select/level_button_container.gd" id="1_crpg4"]
+[ext_resource type="Texture2D" uid="uid://c2b6e8udryiog" path="res://assets/textures/ui/locked_level.png" id="1_vvw01"]
+[ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="2_moit0"]
+
+[node name="level_button_container" type="VBoxContainer"]
+script = ExtResource("1_crpg4")
+
+[node name="level_button" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("1_vvw01")
+texture_pressed = ExtResource("1_vvw01")
+texture_hover = ExtResource("1_vvw01")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number_label" type="Label" parent="level_button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.5
+offset_top = -14.0
+offset_right = 9.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_moit0")
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 51
+text = "1"
+
+[node name="empty" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[connection signal="pressed" from="level_button" to="." method="_on_level_button_pressed"]

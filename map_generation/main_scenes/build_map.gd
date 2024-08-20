@@ -30,6 +30,7 @@ const block_sprite = preload("res://map_generation/2d_sprites/TestSpritetscn.tsc
 
 
 func _ready() -> void:
+	level_info = Autoload.active_level
 	set_up_level()
 
 func set_up_level() -> void:

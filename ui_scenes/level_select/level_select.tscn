@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://cj73synq83h8x"]
+
+[ext_resource type="Script" path="res://ui_scenes/level_select/level_select.gd" id="1_aus5p"]
+[ext_resource type="Resource" uid="uid://cr75ay56p44pv" path="res://map_generation/resources/levels/level_01.tres" id="2_3pngn"]
+[ext_resource type="Resource" uid="uid://dbxvufjxarp7n" path="res://map_generation/resources/levels/level_02.tres" id="3_t0aji"]
+[ext_resource type="Resource" uid="uid://dfb4rn6o1utmh" path="res://map_generation/resources/levels/level_03.tres" id="4_d8a83"]
+[ext_resource type="Resource" uid="uid://bkb232gsghqjk" path="res://map_generation/resources/levels/level_04.tres" id="5_3pm5l"]
+[ext_resource type="Resource" uid="uid://cgcduqkdhi8vv" path="res://map_generation/resources/levels/level_05.tres" id="6_cp8tx"]
+[ext_resource type="Resource" uid="uid://dg35kl5osyxsy" path="res://map_generation/resources/levels/level_06.tres" id="7_dlo8h"]
+[ext_resource type="Resource" uid="uid://d1b7ir0c40xhc" path="res://map_generation/resources/levels/level_07.tres" id="8_cq4n4"]
+[ext_resource type="Resource" uid="uid://b67t6ya01qipt" path="res://map_generation/resources/levels/level_08.tres" id="9_bmlij"]
+[ext_resource type="Resource" uid="uid://bi0b1yppwdavv" path="res://map_generation/resources/levels/level_09.tres" id="10_j7uve"]
+[ext_resource type="Resource" uid="uid://df1ivwh3edokk" path="res://map_generation/resources/levels/level_10.tres" id="11_41hqd"]
+[ext_resource type="Texture2D" uid="uid://cvndgostepmue" path="res://assets/textures/ui/brick_button.png" id="12_6ccs5"]
+[ext_resource type="Texture2D" uid="uid://cd3bd2gk727ml" path="res://assets/textures/ui/brick_button_hover.png" id="13_64t34"]
+[ext_resource type="Theme" uid="uid://cgprh2heefr62" path="res://assets/default_theme.tres" id="14_f3xuq"]
+
+[node name="level_select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aus5p")
+
+[node name="level_resource_preloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("level_01", "level_02", "level_03", "level_04", "level_05", "level_06", "level_07", "level_08", "level_09", "level_10"), [ExtResource("2_3pngn"), ExtResource("3_t0aji"), ExtResource("4_d8a83"), ExtResource("5_3pm5l"), ExtResource("6_cp8tx"), ExtResource("7_dlo8h"), ExtResource("8_cq4n4"), ExtResource("9_bmlij"), ExtResource("10_j7uve"), ExtResource("11_41hqd")]]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="level_container" type="HBoxContainer" parent="MarginContainer/CenterContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="menu_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 7.0
+offset_right = 83.0
+offset_bottom = 80.0
+texture_normal = ExtResource("12_6ccs5")
+texture_pressed = ExtResource("12_6ccs5")
+texture_hover = ExtResource("13_64t34")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="menu_button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -17.5
+offset_right = 13.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_f3xuq")
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 31
+text = "⌂"
+
+[connection signal="pressed" from="menu_button" to="." method="_on_menu_button_pressed"]
