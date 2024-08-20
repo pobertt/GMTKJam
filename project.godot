@@ -36,6 +36,10 @@ folder_colors={
 "res://ui_scenes/": "green"
 }
 
+[global_group]
+
+player=""
+
 [input]
 
 jump={

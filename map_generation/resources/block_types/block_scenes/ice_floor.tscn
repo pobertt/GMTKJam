@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://0fife4w74x3s"]
+
+[ext_resource type="Script" path="res://map_generation/resources/block_types/block_scripts/ice_floor.gd" id="1_sfvxj"]
+[ext_resource type="Texture2D" uid="uid://bwrlkgousr7ma" path="res://assets/textures/colour_palette_resurrect.png" id="2_weo6g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cg8ak"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rt0rk"]
+shading_mode = 0
+albedo_texture = ExtResource("2_weo6g")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2bx0v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tnbbi"]
+size = Vector3(2, 2, 2)
+
+[node name="wall" type="Node3D"]
+script = ExtResource("1_sfvxj")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_cg8ak")
+surface_material_override/0 = SubResource("StandardMaterial3D_rt0rk")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.586711, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.166699, 0)
+shape = SubResource("BoxShape3D_2bx0v")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.346196, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.842148, 0)
+shape = SubResource("BoxShape3D_tnbbi")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

@@ -193,8 +193,9 @@ _data = {
 "walk_sound": SubResource("Animation_b8n3r")
 }
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82934, 0)
+collision_layer = 3
 script = ExtResource("1_0qa20")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
