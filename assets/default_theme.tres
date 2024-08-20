@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cgprh2heefr62"]
 
-[ext_resource type="FontFile" uid="uid://ct8emwpbfflk6" path="res://assets/fonts/bigblocks.ttf" id="1_uem08"]
+[ext_resource type="FontFile" uid="uid://ux4a48csf8xa" path="res://assets/fonts/FORCED SQUARE.ttf" id="1_4uugu"]
 
 [resource]
-default_font = ExtResource("1_uem08")
+default_font = ExtResource("1_4uugu")
 default_font_size = 25

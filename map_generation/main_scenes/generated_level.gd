@@ -12,6 +12,8 @@ func _ready():
 	set_dress_level()
 
 func set_dress_level():
+	for child in grid_map.get_children():
+		child.queue_free()
 	for block_info in block_list:
 		var block = block_info.block_type.packed_scene.instantiate()
 		
@@ -28,3 +30,9 @@ func set_dress_level():
 			player.global_position = block.global_position + Vector3(0,1.2,0) # hacky way of putting player on spawn floor
 		
 		print("Instantiated block: ", block_info.block_type._name, " at ", grid_pos)
+
+
+func _on_death_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		body.global_position = Vector3(2,3.1,2)
+		print("player failed level, going back to start square")

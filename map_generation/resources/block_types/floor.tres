@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("1_a0qs5")
 _name = "Floor"
+description = "A regular floor block to stand on and jump off"
 packed_scene = ExtResource("1_2pxpq")

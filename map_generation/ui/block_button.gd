@@ -6,8 +6,13 @@ signal spawn_block(type: BlockType)
 var block_type: BlockType
 var amount: int
 
+# onready vars
+@onready var number_label: Label = $number_label
+@onready var description_label: Label = $description_label
+
 func _ready() -> void:
-	text = str("x", amount)
+	number_label.text = str("x", amount)
+	description_label.text = block_type.description
 	
 	icon = icon.duplicate()
 	
@@ -21,6 +26,8 @@ func _ready() -> void:
 			icon.region = Rect2(Vector2(64,0), tex_size)
 		"Finish Floor":
 			icon.region = Rect2(Vector2(96,0), tex_size)
+	
+	#tooltip_text = block_type.description
 
 func _on_pressed() -> void:
 	if amount >= 1:

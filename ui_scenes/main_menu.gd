@@ -5,15 +5,9 @@ extends Control
 func _ready():
 	$AudioStreamPlayer.play()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-	
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://ui_scenes/test_level.tscn")
+	SceneTransition.wipe_to_scene("res://ui_scenes/level_select/level_select.tscn")
 	$AudioStreamPlayer.stop()
-	pass
-	
+
 func _on_quit_button_pressed():
 	get_tree().quit()

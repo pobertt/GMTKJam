@@ -12,5 +12,6 @@ amount = 8
 
 [resource]
 script = ExtResource("4_pvuhx")
+number = 2
 blocks = Array[ExtResource("1_ymll4")]([SubResource("Resource_e7dav")])
 level_tilemap = ExtResource("3_28aoj")

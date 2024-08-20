@@ -15,6 +15,11 @@ run/main_scene="res://ui_scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Autoload="*res://autoloads/Autoload.tscn"
+SceneTransition="*res://autoloads/scene_transition.tscn"
+
 [display]
 
 window/stretch/mode="viewport"
@@ -22,7 +27,10 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
+"res://Materials/": "blue",
+"res://SFX/": "purple",
 "res://assets/": "red",
+"res://autoloads/": "pink",
 "res://map_generation/": "orange",
 "res://player/": "yellow",
 "res://ui_scenes/": "green"
@@ -86,3 +94,9 @@ pause={
 common/physics_ticks_per_second=128
 common/max_physics_steps_per_frame=16
 3d/default_gravity=25.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.269531, 0.269531, 0.269531, 1)
